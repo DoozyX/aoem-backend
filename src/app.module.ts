@@ -22,6 +22,7 @@ import { MailerModule } from '@app/mailer/mailer.module';
 import { QueueModule } from '@app/queue/queue.module';
 import { SessionModule } from '@app/session/session.module';
 import { UsersModule } from '@app/users/users.module';
+import { GuildsModule } from '@app/guilds/guilds.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { UsersModule } from '@app/users/users.module';
     MailerModule,
     HomeModule,
     HealthModule,
+    GuildsModule,
   ],
 })
 export class AppModule {

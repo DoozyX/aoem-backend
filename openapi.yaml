@@ -532,12 +532,30 @@ paths:
       tags:
         - Health
   /api/v1/guilds:
+    post:
+      operationId: GuildsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGuildDto'
+      responses:
+        '201':
+          description: Create a guild
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guild'
+      tags:
+        - Guilds
     get:
       operationId: GuildsController_findAll
       parameters: []
       responses:
         '200':
-          description: List of countries
+          description: List of guild
           content:
             application/json:
               schema:
@@ -985,6 +1003,16 @@ components:
         - createdAt
         - updatedAt
         - deletedAt
+        - id
+        - name
+    CreateGuildDto:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+      required:
         - id
         - name
     Guild:
