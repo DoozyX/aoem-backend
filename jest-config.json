@@ -1,0 +1,14 @@
+{
+  "verbose": true,
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "./",
+  "testEnvironment": "node",
+  "transform": {
+    "^.+\\.ts$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "@app/(.*)": "<rootDir>/src/$1",
+    "@test/(.*)": "<rootDir>/test/$1"
+  },
+  "testTimeout": 30000
+}

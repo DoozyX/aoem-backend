@@ -1,0 +1,6 @@
+{
+  "title": "Your application status has been updated",
+  "signed": "Your application has been signed. You can now download the permit.",
+  "returned": "Your application has been returned. Please contact the administrator for more information. Reason: ",
+  "declined": "Your application has been declined. Please contact the administrator for more information. Reason: "
+}

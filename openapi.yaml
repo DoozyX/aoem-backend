@@ -1,0 +1,2837 @@
+openapi: 3.0.0
+paths:
+  /api/v1/users:
+    post:
+      operationId: UsersController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+      responses:
+        '201':
+          description: The record has been successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '422':
+          description: Invalid data provided
+      tags:
+        - Users
+      security:
+        - bearer: []
+  /api/v1/users/individual:
+    post:
+      operationId: UsersController_createIndividual
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIndividualUserDto'
+      responses:
+        '201':
+          description: The record has been successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '422':
+          description: Invalid data provided
+      tags:
+        - Users
+      security:
+        - bearer: []
+  /api/v1/users/{id}:
+    patch:
+      operationId: UsersController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDto'
+      responses:
+        '200':
+          description: The record has been successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '422':
+          description: Invalid data provided
+      tags:
+        - Users
+      security:
+        - bearer: []
+    get:
+      operationId: UsersController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns the user if exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      tags:
+        - Users
+      security:
+        - bearer: []
+  /api/v1/users/{id}/activate:
+    patch:
+      operationId: UsersController_activate
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivateUserDto'
+      responses:
+        '200':
+          description: The record has been successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '422':
+          description: Invalid data provided
+      tags:
+        - Users
+      security:
+        - bearer: []
+  /api/v1/users/statistics:
+    get:
+      operationId: UsersController_statistics
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStatistics'
+      tags:
+        - Users
+      security:
+        - bearer: []
+  /api/v1/users/all:
+    post:
+      operationId: UsersController_findAll
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryUserDto'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PageDto'
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/User'
+      tags:
+        - Users
+      security:
+        - bearer: []
+  /api/v1/profiles/individual:
+    post:
+      operationId: ProfilesController_createIndividual
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIndividualProfileDto'
+      responses:
+        '201':
+          description: Individual profile created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Individual'
+      tags:
+        - Profiles
+      security:
+        - bearer: []
+    patch:
+      operationId: ProfilesController_updateIndividual
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateIndividualProfileDto'
+      responses:
+        '202':
+          description: Individual profile updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Individual'
+      tags:
+        - Profiles
+      security:
+        - bearer: []
+  /api/v1/profiles/company:
+    post:
+      operationId: ProfilesController_createCompany
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCompanyProfileDto'
+      responses:
+        '201':
+          description: Company profile created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+      tags:
+        - Profiles
+      security:
+        - bearer: []
+    patch:
+      operationId: ProfilesController_updateCompany
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCompanyProfileDto'
+      responses:
+        '202':
+          description: Company profile updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+      tags:
+        - Profiles
+      security:
+        - bearer: []
+  /api/v1/auth/email/login:
+    post:
+      operationId: AuthController_login
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthEmailLoginDto'
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponseType'
+        '401':
+          description: Invalid password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Invalid email
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Auth
+  /api/v1/auth/email/register:
+    post:
+      operationId: AuthController_register
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRegisterLoginDto'
+      responses:
+        '201':
+          description: User registered successfully
+        '422':
+          description: Email already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Auth
+  /api/v1/auth/email/resend-verify-mail:
+    post:
+      operationId: AuthController_resendVerifyMail
+      parameters: []
+      responses:
+        '200':
+          description: Email sent successfully
+        '422':
+          description: Invalid State
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Auth
+      security:
+        - bearer: []
+  /api/v1/auth/email/confirm:
+    post:
+      operationId: AuthController_confirmEmail
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthConfirmEmailDto'
+      responses:
+        '204':
+          description: User confirmed successfully
+        '401':
+          description: Invalid token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Invalid user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Auth
+  /api/v1/auth/forgot/password:
+    post:
+      operationId: AuthController_forgotPassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthForgotPasswordDto'
+      responses:
+        '204':
+          description: Forgot request sent successfully
+        '404':
+          description: Invalid user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Auth
+  /api/v1/auth/reset/password:
+    post:
+      operationId: AuthController_resetPassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthResetPasswordDto'
+      responses:
+        '204':
+          description: Password reset successfully
+        '401':
+          description: Invalid token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Invalid user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Auth
+  /api/v1/auth/me:
+    get:
+      operationId: AuthController_me
+      parameters: []
+      responses:
+        '200':
+          description: Current user information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      tags:
+        - Auth
+      security:
+        - bearer: []
+    patch:
+      operationId: AuthController_update
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthUpdateDto'
+      responses:
+        '200':
+          description: User information updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '422':
+          description: Email already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Auth
+      security:
+        - bearer: []
+  /api/v1/auth/refresh:
+    post:
+      operationId: AuthController_refresh
+      parameters: []
+      responses:
+        '200':
+          description: Token refreshed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshResponseType'
+        '401':
+          description: Invalid token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Auth
+      security:
+        - bearer: []
+  /api/v1/auth/logout:
+    post:
+      operationId: AuthController_logout
+      parameters: []
+      responses:
+        '204':
+          description: Logout successful
+      tags:
+        - Auth
+      security:
+        - bearer: []
+  /api/v1/files/upload:
+    post:
+      operationId: FilesLocalController_uploadFile
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: File uploaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileType'
+        '422':
+          description: Missing file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Files
+      security:
+        - bearer: []
+  /:
+    get:
+      operationId: HomeController_appInfo
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Home
+  /api/v1/countries:
+    get:
+      operationId: CountriesController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: List of countries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+      tags:
+        - Countries
+  /api/v1/applications/submit:
+    post:
+      operationId: ApplicationsController_submit
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationDto'
+      responses:
+        '201':
+          description: Application submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+      tags:
+        - Applications
+      security:
+        - bearer: []
+  /api/v1/applications/{id}:
+    get:
+      operationId: ApplicationsController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+      tags:
+        - Applications
+      security:
+        - bearer: []
+    patch:
+      operationId: ApplicationsController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApplicationDto'
+      responses:
+        '202':
+          description: Application updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+      tags:
+        - Applications
+      security:
+        - bearer: []
+  /api/v1/applications/my:
+    post:
+      operationId: ApplicationsController_my
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryApplicationDto'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PageDto'
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Application'
+      tags:
+        - Applications
+      security:
+        - bearer: []
+  /api/v1/applications/all:
+    post:
+      operationId: ApplicationsController_findAll
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryApplicationDto'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PageDto'
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Application'
+      tags:
+        - Applications
+      security:
+        - bearer: []
+  /api/v1/applications/{id}/review:
+    patch:
+      operationId: ApplicationsController_review
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewApplicationDto'
+      responses:
+        '202':
+          description: Application updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+      tags:
+        - Applications
+      security:
+        - bearer: []
+  /api/v1/applications/{id}/assign:
+    patch:
+      operationId: ApplicationsController_assign
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignApplicationDto'
+      responses:
+        '202':
+          description: Application assigned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+      tags:
+        - Applications
+      security:
+        - bearer: []
+  /api/v1/applications/{id}/change-status:
+    patch:
+      operationId: ApplicationsController_changeStatus
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeStatusApplicationDto'
+      responses:
+        '202':
+          description: Application updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+      tags:
+        - Applications
+      security:
+        - bearer: []
+  /api/v1/applications/statistics:
+    post:
+      operationId: ApplicationsController_statistics
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationStatistics'
+      tags:
+        - Applications
+      security:
+        - bearer: []
+  /api/v1/health:
+    get:
+      operationId: HealthController_check
+      parameters: []
+      responses:
+        '200':
+          description: The Health Check is successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  info:
+                    type: object
+                    example:
+                      database:
+                        status: up
+                    additionalProperties:
+                      type: object
+                      required:
+                        - status
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties: true
+                    nullable: true
+                  error:
+                    type: object
+                    example: {}
+                    additionalProperties:
+                      type: object
+                      required:
+                        - status
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties: true
+                    nullable: true
+                  details:
+                    type: object
+                    example:
+                      database:
+                        status: up
+                    additionalProperties:
+                      type: object
+                      required:
+                        - status
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties: true
+        '503':
+          description: The Health Check is not successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  info:
+                    type: object
+                    example:
+                      database:
+                        status: up
+                    additionalProperties:
+                      type: object
+                      required:
+                        - status
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties: true
+                    nullable: true
+                  error:
+                    type: object
+                    example:
+                      redis:
+                        status: down
+                        message: Could not connect
+                    additionalProperties:
+                      type: object
+                      required:
+                        - status
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties: true
+                    nullable: true
+                  details:
+                    type: object
+                    example:
+                      database:
+                        status: up
+                      redis:
+                        status: down
+                        message: Could not connect
+                    additionalProperties:
+                      type: object
+                      required:
+                        - status
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties: true
+      tags:
+        - Health
+  /api/v1/activity/{type}/{id}:
+    get:
+      operationId: ActivityController_findAll
+      parameters:
+        - name: type
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        '200':
+          description: List of activities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity'
+      tags:
+        - Activity
+  /api/v1/reports/{year}/{num}:
+    get:
+      operationId: ReportsController_report
+      parameters:
+        - name: year
+          required: true
+          in: path
+          schema:
+            type: number
+        - name: num
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileType'
+      tags:
+        - Reports
+      security:
+        - bearer: []
+  /api/v1/permits/{id}:
+    get:
+      operationId: PermitsController_permit
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileType'
+      tags:
+        - Permits
+      security:
+        - bearer: []
+  /api/v1/permits/permit/{id}/status:
+    get:
+      operationId: PermitsController_permitStatus
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/JobResponse'
+                  - properties:
+                      data:
+                        $ref: '#/components/schemas/GeneratePermitInput'
+      tags:
+        - Permits
+      security:
+        - bearer: []
+info:
+  title: MOEPP CITES API
+  description: MOEPP CITES API docs
+  version: '1.0'
+  contact: {}
+tags: []
+servers:
+  - url: https://moepp-cites.doozyx.com
+    description: Testing server
+  - url: http://localhost:8000
+    description: Local server
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    CreateUserDto:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          enum:
+            - user
+            - admin
+            - approver
+            - director
+            - superAdmin
+            - archiver
+          type: string
+        status:
+          enum:
+            - inactive
+            - verified
+            - pending
+            - approved
+            - rejected
+            - expired
+          type: string
+        type:
+          enum:
+            - individual
+            - company
+          type: string
+        language:
+          enum:
+            - en
+            - mk
+          type: string
+      required:
+        - email
+        - password
+        - role
+        - status
+        - type
+        - language
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        countryId:
+          type: number
+        postalCode:
+          type: string
+      required:
+        - street
+        - city
+        - state
+        - countryId
+        - postalCode
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+        issuingCountryId:
+          type: number
+        type:
+          type: string
+          enum:
+            - personalId
+            - passport
+      required:
+        - id
+        - issuingCountryId
+        - type
+    Individual:
+      type: object
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+          nullable: true
+        deletedAt:
+          format: date-time
+          type: string
+          nullable: true
+        id:
+          type: number
+        firstName:
+          type: string
+        lastName:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        document:
+          $ref: '#/components/schemas/Document'
+        phoneNumber:
+          type: string
+      required:
+        - createdAt
+        - updatedAt
+        - deletedAt
+        - id
+        - firstName
+        - lastName
+        - address
+        - document
+        - phoneNumber
+    FileType:
+      type: object
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+          nullable: true
+        deletedAt:
+          format: date-time
+          type: string
+          nullable: true
+        id:
+          type: string
+        name:
+          type: string
+      required:
+        - createdAt
+        - updatedAt
+        - deletedAt
+        - id
+        - name
+    Company:
+      type: object
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+          nullable: true
+        deletedAt:
+          format: date-time
+          type: string
+          nullable: true
+        id:
+          type: number
+        name:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        taxNumber:
+          type: number
+        identificationDocument:
+          $ref: '#/components/schemas/FileType'
+        identificationDocumentId:
+          type: string
+        contact:
+          $ref: '#/components/schemas/Individual'
+      required:
+        - createdAt
+        - updatedAt
+        - deletedAt
+        - id
+        - name
+        - address
+        - taxNumber
+        - identificationDocument
+        - identificationDocumentId
+        - contact
+    User:
+      type: object
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+          nullable: true
+        deletedAt:
+          format: date-time
+          type: string
+          nullable: true
+        id:
+          type: number
+        email:
+          type: string
+        role:
+          type: string
+          enum:
+            - user
+            - admin
+            - approver
+            - director
+            - superAdmin
+            - archiver
+        status:
+          type: string
+          enum:
+            - inactive
+            - verified
+            - pending
+            - approved
+            - rejected
+            - expired
+        statusReason:
+          type: string
+          nullable: true
+        type:
+          type: string
+          enum:
+            - individual
+            - company
+        individual:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/Individual'
+        company:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/Company'
+        language:
+          type: string
+          enum:
+            - en
+            - mk
+      required:
+        - createdAt
+        - updatedAt
+        - deletedAt
+        - id
+        - email
+        - role
+        - status
+        - statusReason
+        - type
+        - individual
+        - company
+        - language
+    AddressDto:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        countryId:
+          type: number
+        postalCode:
+          type: string
+      required:
+        - street
+        - city
+        - state
+        - countryId
+        - postalCode
+    DocumentDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          enum:
+            - personalId
+            - passport
+          type: string
+        issuingCountryId:
+          type: number
+          example: 807
+      required:
+        - id
+        - type
+        - issuingCountryId
+    CreateIndividualProfileDto:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        address:
+          $ref: '#/components/schemas/AddressDto'
+        document:
+          $ref: '#/components/schemas/DocumentDto'
+        phoneNumber:
+          type: string
+      required:
+        - firstName
+        - lastName
+        - address
+        - document
+        - phoneNumber
+    CreateIndividualUserDto:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          enum:
+            - user
+            - admin
+            - approver
+            - director
+            - superAdmin
+            - archiver
+          type: string
+        status:
+          enum:
+            - inactive
+            - verified
+            - pending
+            - approved
+            - rejected
+            - expired
+          type: string
+        individual:
+          $ref: '#/components/schemas/CreateIndividualProfileDto'
+        language:
+          enum:
+            - en
+            - mk
+          type: string
+      required:
+        - email
+        - password
+        - role
+        - status
+        - language
+    UpdateUserDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: test1@doozyx.com
+        password:
+          type: string
+          minLength: 6
+        role:
+          enum:
+            - user
+            - admin
+            - approver
+            - director
+            - superAdmin
+            - archiver
+          type: string
+        status:
+          enum:
+            - inactive
+            - verified
+            - pending
+            - approved
+            - rejected
+            - expired
+          type: string
+        individual:
+          $ref: '#/components/schemas/CreateIndividualProfileDto'
+        language:
+          enum:
+            - en
+            - mk
+          type: string
+        statusReason:
+          type: string
+    ActivateUserDto:
+      type: object
+      properties:
+        status:
+          enum:
+            - inactive
+            - verified
+            - pending
+            - approved
+            - rejected
+            - expired
+          type: string
+        statusReason:
+          type: string
+    UserStatistics:
+      type: object
+      properties:
+        inactive:
+          type: number
+        verified:
+          type: number
+        pending:
+          type: number
+        approved:
+          type: number
+        rejected:
+          type: number
+        total:
+          type: number
+      required:
+        - inactive
+        - verified
+        - pending
+        - approved
+        - rejected
+        - total
+    PageMetaDto:
+      type: object
+      properties:
+        page:
+          type: number
+        limit:
+          type: number
+        itemCount:
+          type: number
+        pageCount:
+          type: number
+        hasPreviousPage:
+          type: boolean
+        hasNextPage:
+          type: boolean
+      required:
+        - page
+        - limit
+        - itemCount
+        - pageCount
+        - hasPreviousPage
+        - hasNextPage
+    PageDto:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/PageMetaDto'
+        data:
+          type: array
+          items:
+            type: string
+      required:
+        - meta
+        - data
+    FilterUserDto:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            type: string
+            enum:
+              - user
+              - admin
+              - approver
+              - director
+              - superAdmin
+              - archiver
+        statuses:
+          type: array
+          items:
+            type: string
+            enum:
+              - inactive
+              - verified
+              - pending
+              - approved
+              - rejected
+              - expired
+        email:
+          type: string
+        types:
+          type: array
+          items:
+            type: string
+            enum:
+              - individual
+              - company
+    SortUserDto:
+      type: object
+      properties:
+        orderBy:
+          enum:
+            - email
+            - type
+            - roleId
+            - statusId
+            - createdAt
+            - updatedAt
+            - deletedAt
+          type: string
+        order:
+          default: ASC
+          enum:
+            - ASC
+            - DESC
+          type: string
+      required:
+        - orderBy
+    QueryUserDto:
+      type: object
+      properties:
+        page:
+          type: number
+          default: 1
+          minimum: 1
+        limit:
+          type: number
+          default: 10
+          minimum: 1
+          maximum: 50
+        filter:
+          $ref: '#/components/schemas/FilterUserDto'
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortUserDto'
+    UpdateIndividualProfileDto:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        address:
+          $ref: '#/components/schemas/AddressDto'
+        document:
+          $ref: '#/components/schemas/DocumentDto'
+        phoneNumber:
+          type: string
+    CreateCompanyProfileDto:
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          $ref: '#/components/schemas/AddressDto'
+        taxNumber:
+          type: number
+        identificationDocument:
+          type: string
+        contact:
+          $ref: '#/components/schemas/CreateIndividualProfileDto'
+      required:
+        - name
+        - address
+        - taxNumber
+        - identificationDocument
+        - contact
+    UpdateCompanyProfileDto:
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          $ref: '#/components/schemas/AddressDto'
+        taxNumber:
+          type: number
+        identificationDocument:
+          type: string
+        contact:
+          $ref: '#/components/schemas/CreateIndividualProfileDto'
+    AuthEmailLoginDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@doozyx.com
+        password:
+          type: string
+      required:
+        - email
+        - password
+    LoginResponseType:
+      type: object
+      properties:
+        token:
+          type: string
+        refreshToken:
+          type: string
+        tokenExpires:
+          type: number
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+        - token
+        - refreshToken
+        - tokenExpires
+        - user
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: string
+        statusCode:
+          type: number
+      required:
+        - message
+        - error
+        - statusCode
+    AuthRegisterLoginDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@doozyx.com
+        password:
+          type: string
+          minLength: 6
+        type:
+          enum:
+            - individual
+            - company
+          type: string
+        language:
+          enum:
+            - en
+            - mk
+          type: string
+      required:
+        - email
+        - password
+        - type
+        - language
+    AuthConfirmEmailDto:
+      type: object
+      properties:
+        hash:
+          type: string
+      required:
+        - hash
+    AuthForgotPasswordDto:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+        - email
+    AuthResetPasswordDto:
+      type: object
+      properties:
+        password:
+          type: string
+        hash:
+          type: string
+      required:
+        - password
+        - hash
+    RefreshResponseType:
+      type: object
+      properties:
+        token:
+          type: string
+        refreshToken:
+          type: string
+        tokenExpires:
+          type: number
+      required:
+        - token
+        - refreshToken
+        - tokenExpires
+    AuthUpdateDto:
+      type: object
+      properties:
+        password:
+          type: string
+          minLength: 6
+        oldPassword:
+          type: string
+    Country:
+      type: object
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+          nullable: true
+        deletedAt:
+          format: date-time
+          type: string
+          nullable: true
+        id:
+          type: number
+        name:
+          type: string
+        code:
+          type: string
+      required:
+        - createdAt
+        - updatedAt
+        - deletedAt
+        - id
+        - name
+        - code
+    SpecimenDescriptionDto:
+      type: object
+      properties:
+        description:
+          type: string
+        tradeTermCode:
+          enum:
+            - BAL
+            - BAR
+            - BOD
+            - BON
+            - CAL
+            - CAP
+            - CAR
+            - BOC
+            - HOC
+            - IVC
+            - CAV
+            - CHP
+            - CLA
+            - CLO
+            - COR
+            - COS
+            - CUL
+            - DER
+            - DPL
+            - EAR
+            - EGG
+            - EGL
+            - ESH
+            - EXT
+            - FEA
+            - FIB
+            - DFN
+            - FFN
+            - FIG
+            - FLO
+            - FPT
+            - LEG
+            - FRU
+            - FOO
+            - OIL
+            - PRL
+            - KEY
+            - BOP
+            - HOP
+            - IVP
+            - PLA
+            - PLY
+            - POW
+            - PUP
+            - ROO
+            - RUG
+            - ROS
+            - SAW
+            - SCA
+            - SEE
+            - SHE
+            - SID
+            - SKE
+            - SKI
+            - SKP
+            - SKU
+            - SOU
+            - SPE
+            - STE
+            - SWI
+            - TAI
+            - THD
+            - TIM
+            - TEE
+            - TRW
+            - TRO
+            - TRU
+            - TUS
+            - VEN
+            - WAX
+            - WPR
+          type: string
+        marks:
+          type: array
+          items:
+            type: string
+        gender:
+          nullable: true
+          enum:
+            - male
+            - female
+            - other
+          type: object
+      required:
+        - description
+        - tradeTermCode
+        - marks
+        - gender
+    MassDto:
+      type: object
+      properties:
+        value:
+          type: number
+        unit:
+          enum:
+            - g
+            - kg
+            - l
+            - ml
+            - m
+            - m2
+            - cm
+            - m3
+          type: string
+      required:
+        - value
+        - unit
+    SpecimenCountryDataApplicantDto:
+      type: object
+      properties:
+        countryId:
+          type: number
+          description: 15. Country of origin/18. Country of last re-export
+      required:
+        - countryId
+    SpecimenApplicantDto:
+      type: object
+      properties:
+        description:
+          description: >-
+            8. Description Of specimens (incl. marks, sex, date of birth for
+            live animals)
+          allOf:
+            - $ref: '#/components/schemas/SpecimenDescriptionDto'
+        netMass:
+          nullable: true
+          description: 9. Net mass (kg)
+          allOf:
+            - $ref: '#/components/schemas/MassDto'
+        quantity:
+          type: number
+          nullable: true
+          description: 10. Quantity
+        citesAppendix:
+          enum:
+            - I
+            - II
+            - III
+            - notListed
+          type: string
+          description: 11. CITES Appendix
+        speciesList:
+          enum:
+            - A
+            - B
+            - C
+            - D
+            - notListed
+          type: string
+          description: 12. List of species
+        source:
+          enum:
+            - W
+            - R
+            - D
+            - A
+            - C
+            - F
+            - I
+            - O
+            - U
+            - X
+            - 'Y'
+          type: string
+          description: 13. Source
+        purpose:
+          enum:
+            - B
+            - E
+            - G
+            - H
+            - L
+            - M
+            - 'N'
+            - P
+            - Q
+            - S
+            - T
+            - Z
+          type: string
+          description: 14. Purpose
+        specimenOrigin:
+          $ref: '#/components/schemas/SpecimenCountryDataApplicantDto'
+      required:
+        - description
+        - netMass
+        - quantity
+        - citesAppendix
+        - speciesList
+        - source
+        - purpose
+        - specimenOrigin
+    CreateApplicationDto:
+      type: object
+      properties:
+        type:
+          enum:
+            - import
+            - export
+            - reexport
+            - other
+          type: string
+        importer:
+          type: string
+          description: 3. Importer
+        importCountryId:
+          type: number
+          example: 807
+          description: 5. Country of import
+        exporter:
+          type: string
+          description: 1. Exporter/Re-exporter
+        exportCountryId:
+          type: number
+          example: 807
+          description: 4. Country of (re)-export
+        specimen:
+          $ref: '#/components/schemas/SpecimenApplicantDto'
+        speciesScientificName:
+          type: string
+          description: 21. Scientific name of species
+        commonName:
+          type: string
+          description: 22. Common name of species
+        comment:
+          type: string
+        fileIds:
+          type: array
+          items:
+            type: string
+        proofOfOriginFileId:
+          type: string
+          nullable: true
+        exportPermitFileId:
+          type: string
+          nullable: true
+        previousPermitsReportFileId:
+          type: string
+          nullable: true
+        paymentReceiptFileId:
+          type: string
+        status:
+          enum:
+            - created
+            - submitted
+            - returned
+            - reviewed
+            - approved
+            - declined
+            - signed
+            - canceled
+          type: string
+      required:
+        - type
+        - importer
+        - importCountryId
+        - exporter
+        - exportCountryId
+        - specimen
+        - speciesScientificName
+        - commonName
+        - comment
+        - proofOfOriginFileId
+        - exportPermitFileId
+        - previousPermitsReportFileId
+        - paymentReceiptFileId
+        - status
+    SpecimenDescription:
+      type: object
+      properties:
+        description:
+          type: string
+        tradeTermCode:
+          type: string
+          enum:
+            - BAL
+            - BAR
+            - BOD
+            - BON
+            - CAL
+            - CAP
+            - CAR
+            - BOC
+            - HOC
+            - IVC
+            - CAV
+            - CHP
+            - CLA
+            - CLO
+            - COR
+            - COS
+            - CUL
+            - DER
+            - DPL
+            - EAR
+            - EGG
+            - EGL
+            - ESH
+            - EXT
+            - FEA
+            - FIB
+            - DFN
+            - FFN
+            - FIG
+            - FLO
+            - FPT
+            - LEG
+            - FRU
+            - FOO
+            - OIL
+            - PRL
+            - KEY
+            - BOP
+            - HOP
+            - IVP
+            - PLA
+            - PLY
+            - POW
+            - PUP
+            - ROO
+            - RUG
+            - ROS
+            - SAW
+            - SCA
+            - SEE
+            - SHE
+            - SID
+            - SKE
+            - SKI
+            - SKP
+            - SKU
+            - SOU
+            - SPE
+            - STE
+            - SWI
+            - TAI
+            - THD
+            - TIM
+            - TEE
+            - TRW
+            - TRO
+            - TRU
+            - TUS
+            - VEN
+            - WAX
+            - WPR
+        marks:
+          type: array
+          items:
+            type: string
+        gender:
+          type: string
+          enum:
+            - male
+            - female
+            - other
+          nullable: true
+      required:
+        - description
+        - tradeTermCode
+        - marks
+        - gender
+    Mass:
+      type: object
+      properties:
+        value:
+          type: number
+        unit:
+          type: string
+          enum:
+            - g
+            - kg
+            - l
+            - ml
+            - m
+            - m2
+            - cm
+            - m3
+      required:
+        - value
+        - unit
+    SpecimenCountryData:
+      type: object
+      properties:
+        country:
+          description: 15. Country of origin/18. Country of last re-export
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/Country'
+        countryId:
+          type: number
+          description: 15. Country of origin/18. Country of last re-export
+          nullable: true
+        id:
+          type: string
+          description: 16. Permit No./19. Certificate No.
+          nullable: true
+        issueDate:
+          format: date-time
+          type: string
+          description: 17. Date of issue/20. Date of issue
+          nullable: true
+      required:
+        - country
+        - countryId
+        - id
+        - issueDate
+    Specimen:
+      type: object
+      properties:
+        description:
+          description: >-
+            8. Description Of specimens (incl. marks, sex, date of birth for
+            live animals)
+          allOf:
+            - $ref: '#/components/schemas/SpecimenDescription'
+        netMass:
+          description: 9. Net mass (kg)
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/Mass'
+        quantity:
+          type: number
+          description: 10. Quantity
+          nullable: true
+        citesAppendix:
+          type: string
+          description: 11. CITES Appendix
+          enum:
+            - I
+            - II
+            - III
+            - notListed
+        speciesList:
+          type: string
+          description: 12. List of species
+          enum:
+            - A
+            - B
+            - C
+            - D
+            - notListed
+        source:
+          type: string
+          description: 13. Source
+          enum:
+            - W
+            - R
+            - D
+            - A
+            - C
+            - F
+            - I
+            - O
+            - U
+            - X
+            - 'Y'
+        purpose:
+          type: string
+          description: 14. Purpose
+          enum:
+            - B
+            - E
+            - G
+            - H
+            - L
+            - M
+            - 'N'
+            - P
+            - Q
+            - S
+            - T
+            - Z
+        specimenOrigin:
+          $ref: '#/components/schemas/SpecimenCountryData'
+        specimenExport:
+          $ref: '#/components/schemas/SpecimenCountryData'
+      required:
+        - description
+        - netMass
+        - quantity
+        - citesAppendix
+        - speciesList
+        - source
+        - purpose
+        - specimenOrigin
+        - specimenExport
+    Application:
+      type: object
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+          nullable: true
+        deletedAt:
+          format: date-time
+          type: string
+          nullable: true
+        id:
+          type: number
+        user:
+          $ref: '#/components/schemas/User'
+        userId:
+          type: number
+        number:
+          type: string
+          description: No.
+          nullable: true
+        issueDate:
+          type: object
+        type:
+          type: string
+          enum:
+            - import
+            - export
+            - reexport
+            - other
+        importer:
+          type: string
+          description: 3. Importer
+        importCountry:
+          description: 5. Country of import
+          allOf:
+            - $ref: '#/components/schemas/Country'
+        importCountryId:
+          type: number
+          example: 807
+          description: 5. Country of import
+        exporter:
+          type: string
+          description: 1. Exporter/Re-exporter
+        exportCountry:
+          description: 4. Country of (re)-export
+          allOf:
+            - $ref: '#/components/schemas/Country'
+        exportCountryId:
+          type: number
+          example: 807
+          description: 4. Country of (re)-export
+        validity:
+          format: date-time
+          type: string
+          description: 2. Last day of validity
+          nullable: true
+        speciesLocation:
+          type: string
+          description: 6. Authorized location for live specimen of List A species
+          nullable: true
+        issuingManagementAuthority:
+          type: string
+          description: 7. Issuing Management Authority
+          nullable: true
+        specimen:
+          $ref: '#/components/schemas/Specimen'
+        speciesScientificName:
+          type: string
+          description: 21. Scientific name of species
+        commonName:
+          type: string
+          description: 22. Common name of species
+        comment:
+          type: string
+        files:
+          type: array
+          items:
+            type: string
+        fileIds:
+          type: array
+          items:
+            type: string
+        scientificOpinionFile:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/FileType'
+        scientificOpinionFileId:
+          type: string
+          nullable: true
+        proofOfOriginFile:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/FileType'
+        proofOfOriginFileId:
+          type: string
+          nullable: true
+        exportPermitFile:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/FileType'
+        exportPermitFileId:
+          type: string
+          nullable: true
+        previousPermitsReportFile:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/FileType'
+        previousPermitsReportFileId:
+          type: string
+          nullable: true
+        paymentReceiptFile:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/FileType'
+        paymentReceiptFileId:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum:
+            - created
+            - submitted
+            - returned
+            - reviewed
+            - approved
+            - declined
+            - signed
+            - canceled
+        statusReason:
+          type: string
+          nullable: true
+        reviewer:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/User'
+        reviewerId:
+          type: number
+          nullable: true
+        approvedBy:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/User'
+        approvedById:
+          type: number
+          nullable: true
+        signedBy:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/User'
+        signedById:
+          type: number
+          nullable: true
+        permit:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/FileType'
+        permitId:
+          type: string
+          nullable: true
+      required:
+        - createdAt
+        - updatedAt
+        - deletedAt
+        - id
+        - user
+        - userId
+        - number
+        - issueDate
+        - type
+        - importer
+        - importCountry
+        - importCountryId
+        - exporter
+        - exportCountry
+        - exportCountryId
+        - validity
+        - speciesLocation
+        - issuingManagementAuthority
+        - specimen
+        - speciesScientificName
+        - commonName
+        - comment
+        - files
+        - fileIds
+        - scientificOpinionFile
+        - scientificOpinionFileId
+        - proofOfOriginFile
+        - proofOfOriginFileId
+        - exportPermitFile
+        - exportPermitFileId
+        - previousPermitsReportFile
+        - previousPermitsReportFileId
+        - paymentReceiptFile
+        - paymentReceiptFileId
+        - status
+        - statusReason
+        - reviewer
+        - reviewerId
+        - approvedBy
+        - approvedById
+        - signedBy
+        - signedById
+        - permit
+        - permitId
+    FilterApplicationDto:
+      type: object
+      properties:
+        id:
+          type: number
+        importer:
+          type: string
+        exporter:
+          type: string
+        speciesScientificName:
+          type: string
+        commonName:
+          type: string
+        userId:
+          type: number
+        userEmail:
+          type: string
+        reviewerId:
+          type: number
+          nullable: true
+        reviewerEmail:
+          type: string
+        types:
+          type: array
+          items:
+            type: string
+            enum:
+              - import
+              - export
+              - reexport
+              - other
+        statuses:
+          type: array
+          items:
+            type: string
+            enum:
+              - created
+              - submitted
+              - returned
+              - reviewed
+              - approved
+              - declined
+              - signed
+              - canceled
+        year:
+          type: number
+    SortApplicationDto:
+      type: object
+      properties:
+        orderBy:
+          enum:
+            - userId
+            - reviewerId
+            - status
+            - type
+            - createdAt
+            - updatedAt
+            - deletedAt
+          type: string
+        order:
+          default: ASC
+          enum:
+            - ASC
+            - DESC
+          type: string
+      required:
+        - orderBy
+    QueryApplicationDto:
+      type: object
+      properties:
+        page:
+          type: number
+          default: 1
+          minimum: 1
+        limit:
+          type: number
+          default: 10
+          minimum: 1
+          maximum: 50
+        filters:
+          $ref: '#/components/schemas/FilterApplicationDto'
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortApplicationDto'
+    UpdateApplicationDto:
+      type: object
+      properties:
+        type:
+          enum:
+            - import
+            - export
+            - reexport
+            - other
+          type: string
+        importer:
+          type: string
+          description: 3. Importer
+        importCountryId:
+          type: number
+          example: 807
+          description: 5. Country of import
+        exporter:
+          type: string
+          description: 1. Exporter/Re-exporter
+        exportCountryId:
+          type: number
+          example: 807
+          description: 4. Country of (re)-export
+        specimen:
+          $ref: '#/components/schemas/SpecimenApplicantDto'
+        speciesScientificName:
+          type: string
+          description: 21. Scientific name of species
+        commonName:
+          type: string
+          description: 22. Common name of species
+        comment:
+          type: string
+        fileIds:
+          type: array
+          items:
+            type: string
+        proofOfOriginFileId:
+          type: string
+          nullable: true
+        exportPermitFileId:
+          type: string
+          nullable: true
+        previousPermitsReportFileId:
+          type: string
+          nullable: true
+        paymentReceiptFileId:
+          type: string
+        status:
+          enum:
+            - created
+            - submitted
+            - returned
+            - reviewed
+            - approved
+            - declined
+            - signed
+            - canceled
+          type: string
+    SpecimenCountryDataAdminDto:
+      type: object
+      properties:
+        countryId:
+          type: number
+          nullable: true
+          description: 15. Country of origin/18. Country of last re-export
+        id:
+          type: string
+          nullable: true
+          description: 16. Permit No./19. Certificate No.
+        issueDate:
+          format: date-time
+          type: string
+          nullable: true
+          description: 17. Date of issue/20. Date of issue
+      required:
+        - countryId
+        - id
+        - issueDate
+    SpecimenAdminDto:
+      type: object
+      properties:
+        description:
+          description: >-
+            8. Description Of specimens (incl. marks, sex, date of birth for
+            live animals)
+          allOf:
+            - $ref: '#/components/schemas/SpecimenDescriptionDto'
+        netMass:
+          nullable: true
+          description: 9. Net mass (kg)
+          allOf:
+            - $ref: '#/components/schemas/MassDto'
+        quantity:
+          type: number
+          nullable: true
+          description: 10. Quantity
+        citesAppendix:
+          enum:
+            - I
+            - II
+            - III
+            - notListed
+          type: string
+          description: 11. CITES Appendix
+        speciesList:
+          enum:
+            - A
+            - B
+            - C
+            - D
+            - notListed
+          type: string
+          description: 12. List of species
+        source:
+          enum:
+            - W
+            - R
+            - D
+            - A
+            - C
+            - F
+            - I
+            - O
+            - U
+            - X
+            - 'Y'
+          type: string
+          description: 13. Source
+        purpose:
+          enum:
+            - B
+            - E
+            - G
+            - H
+            - L
+            - M
+            - 'N'
+            - P
+            - Q
+            - S
+            - T
+            - Z
+          type: string
+          description: 14. Purpose
+        specimenOrigin:
+          $ref: '#/components/schemas/SpecimenCountryDataAdminDto'
+        specimenExport:
+          $ref: '#/components/schemas/SpecimenCountryDataAdminDto'
+      required:
+        - description
+        - netMass
+        - quantity
+        - citesAppendix
+        - speciesList
+        - source
+        - purpose
+        - specimenOrigin
+        - specimenExport
+    ReviewApplicationDto:
+      type: object
+      properties:
+        type:
+          enum:
+            - import
+            - export
+            - reexport
+            - other
+          type: string
+        importer:
+          type: string
+          description: 3. Importer
+        importCountryId:
+          type: number
+          example: 807
+          description: 5. Country of import
+        exporter:
+          type: string
+          description: 1. Exporter/Re-exporter
+        exportCountryId:
+          type: number
+          example: 807
+          description: 4. Country of (re)-export
+        specimen:
+          $ref: '#/components/schemas/SpecimenAdminDto'
+        speciesScientificName:
+          type: string
+          description: 21. Scientific name of species
+        commonName:
+          type: string
+          description: 22. Common name of species
+        comment:
+          type: string
+        fileIds:
+          type: array
+          items:
+            type: string
+        proofOfOriginFileId:
+          type: string
+          nullable: true
+        exportPermitFileId:
+          type: string
+          nullable: true
+        previousPermitsReportFileId:
+          type: string
+          nullable: true
+        paymentReceiptFileId:
+          type: string
+        status:
+          enum:
+            - created
+            - submitted
+            - returned
+            - reviewed
+            - approved
+            - declined
+            - signed
+            - canceled
+          type: string
+        number:
+          type: string
+          nullable: true
+          description: No.
+        issueDate:
+          format: date-time
+          type: string
+        validity:
+          format: date-time
+          type: string
+          description: 2. Last day of validity
+        speciesLocation:
+          type: string
+          description: 6. Authorized location for live specimen of List A species
+        issuingManagementAuthority:
+          type: string
+          description: 7. Issuing Management Authority
+        scientificOpinionFileId:
+          type: string
+          nullable: true
+      required:
+        - type
+        - importer
+        - importCountryId
+        - exporter
+        - exportCountryId
+        - specimen
+        - speciesScientificName
+        - commonName
+        - comment
+        - proofOfOriginFileId
+        - exportPermitFileId
+        - previousPermitsReportFileId
+        - paymentReceiptFileId
+        - status
+        - number
+        - issueDate
+        - validity
+        - speciesLocation
+        - issuingManagementAuthority
+        - scientificOpinionFileId
+    AssignApplicationDto:
+      type: object
+      properties:
+        reviewerId:
+          type: number
+      required:
+        - reviewerId
+    ChangeStatusApplicationDto:
+      type: object
+      properties:
+        status:
+          enum:
+            - created
+            - submitted
+            - returned
+            - reviewed
+            - approved
+            - declined
+            - signed
+            - canceled
+          type: string
+        statusReason:
+          type: string
+          nullable: true
+      required:
+        - status
+        - statusReason
+    ApplicationStatistics:
+      type: object
+      properties:
+        created:
+          type: number
+        submitted:
+          type: number
+        returned:
+          type: number
+        reviewed:
+          type: number
+        approved:
+          type: number
+        declined:
+          type: number
+        signed:
+          type: number
+        canceled:
+          type: number
+        total:
+          type: number
+      required:
+        - created
+        - submitted
+        - returned
+        - reviewed
+        - approved
+        - declined
+        - signed
+        - canceled
+        - total
+    Activity:
+      type: object
+      properties:
+        id:
+          type: number
+        type:
+          type: string
+          enum:
+            - application
+            - user
+        entityId:
+          type: number
+        actor:
+          $ref: '#/components/schemas/User'
+        actorId:
+          type: number
+        action:
+          type: string
+        target:
+          type: string
+          enum:
+            - application
+            - status
+            - user
+            - profile
+        time:
+          format: date-time
+          type: string
+        changes:
+          nullable: true
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - type
+        - entityId
+        - actor
+        - actorId
+        - action
+        - target
+        - time
+        - changes
+    JobResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        data:
+          type: object
+        id:
+          type: string
+        progress:
+          type: object
+        timestamp:
+          type: number
+        state:
+          type: string
+          enum:
+            - completed
+            - failed
+            - active
+            - delayed
+            - prioritized
+            - waiting
+            - waiting-children
+            - unknown
+      required:
+        - name
+        - data
+        - id
+        - progress
+        - timestamp
+        - state
+    GeneratePermitInput:
+      type: object
+      properties: {}

@@ -1,0 +1,7 @@
+{
+  "title": "Your account status has been updated",
+  "approved": "Your account has been approved. You can now login.",
+  "rejected": "Your account has been rejected. Please contact the administrator for more information. Reason: ",
+  "pending": "Your account is pending approval. You will receive an email once your account has been approved.",
+  "verified": "Your account has been returned. Please update your information. Reason:"
+}
