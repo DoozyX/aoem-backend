@@ -23,6 +23,7 @@ import { QueueModule } from '@app/queue/queue.module';
 import { SessionModule } from '@app/session/session.module';
 import { UsersModule } from '@app/users/users.module';
 import { GuildsModule } from '@app/guilds/guilds.module';
+import { ChannelsModule } from '@app/channels/channels.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { GuildsModule } from '@app/guilds/guilds.module';
     HomeModule,
     HealthModule,
     GuildsModule,
+    ChannelsModule,
   ],
 })
 export class AppModule {

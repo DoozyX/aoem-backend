@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { Guild, GuildRepository } from '@app/guilds';
 
@@ -8,8 +8,12 @@ import { CreateGuildDto } from '../dto/create-guild.dto';
 export class GuildService {
   constructor(private readonly guildRepository: GuildRepository) {}
 
-  create(guild: CreateGuildDto): Promise<Guild> {
-    return this.guildRepository.create(guild);
+  async create(guild: CreateGuildDto): Promise<Guild> {
+    try {
+      return await this.guildRepository.create(guild);
+    } catch {
+      throw new BadRequestException();
+    }
   }
 
   findAll(): Promise<Guild[]> {

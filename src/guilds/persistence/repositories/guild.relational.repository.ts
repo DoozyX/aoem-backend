@@ -34,6 +34,11 @@ export class GuildRelationalRepository implements GuildRepository {
     return guildEntity ? GuildMapper.toDomain(guildEntity) : null;
   }
 
+  async findByUid(uid: string): Promise<Guild | null> {
+    const guildEntity = await this.repository.findOne({ where: { uid } });
+    return guildEntity ? GuildMapper.toDomain(guildEntity) : null;
+  }
+
   async findByIds(ids: number[]): Promise<Guild[]> {
     const guildEntities = await this.repository.find({
       where: { id: In(ids) },
