@@ -3,11 +3,7 @@ import { IsEnum, IsString } from 'class-validator';
 
 import { BuffType } from '@app/channels';
 
-export class CreateChannelDto {
-  @ApiProperty()
-  @IsString()
-  uid: string;
-
+export class CreateBuffDto {
   @ApiProperty()
   @IsString()
   guildUid: string;
@@ -15,4 +11,8 @@ export class CreateChannelDto {
   @ApiProperty({ enum: BuffType })
   @IsEnum(BuffType)
   type: BuffType;
+
+  @ApiProperty()
+  @IsString()
+  member: string;
 }

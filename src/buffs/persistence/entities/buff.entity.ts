@@ -1,17 +1,14 @@
 import { Column, Entity, Index, ManyToOne, Unique } from 'typeorm';
 
 import { AbstractEntity } from '@app/utils';
-import { Channel, BuffType } from '@app/channels';
+import { Buff } from '@app/buffs';
 import { GuildEntity } from '@app/guilds';
+import { BuffType } from '@app/channels';
 
 @Entity({
-  name: 'channel',
+  name: 'buff',
 })
-@Unique('UQ_guildId_type', ['guildId', 'type'])
-export class ChannelEntity extends AbstractEntity implements Channel {
-  @Column({ unique: true })
-  uid: string;
-
+export class BuffEntity extends AbstractEntity implements Buff {
   @ManyToOne(() => GuildEntity)
   @Index()
   guild: GuildEntity;
@@ -21,4 +18,7 @@ export class ChannelEntity extends AbstractEntity implements Channel {
 
   @Column()
   type: BuffType;
+
+  @Column()
+  member: string;
 }

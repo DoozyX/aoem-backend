@@ -2,17 +2,9 @@ import { AbstractModel } from '@app/utils';
 import { ApiProperty } from '@nestjs/swagger';
 
 import { Guild } from '@app/guilds';
+import { BuffType } from '@app/channels';
 
-export enum BuffType {
-  Construction = 'construction',
-  Research = 'research',
-  Training = 'training',
-}
-
-export class Channel extends AbstractModel {
-  @ApiProperty()
-  uid: string;
-
+export class Buff extends AbstractModel {
   @ApiProperty()
   guild: Guild;
 
@@ -21,4 +13,7 @@ export class Channel extends AbstractModel {
 
   @ApiProperty({ enum: BuffType })
   type: BuffType;
+
+  @ApiProperty()
+  member: string;
 }

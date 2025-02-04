@@ -1,4 +1,4 @@
-import { Channel, ChannelType } from '@app/channels';
+import { Channel, BuffType } from '@app/channels';
 
 export type CreateChannel = Omit<
   Channel,
@@ -11,7 +11,7 @@ export abstract class ChannelRepository {
   abstract findById(id: number): Promise<Channel | null>;
   abstract findByUid(uid: string): Promise<Channel | null>;
   abstract findByTypeAndGuild(
-    type: ChannelType,
+    type: BuffType,
     guildId: number,
   ): Promise<Channel | null>;
   abstract findByIds(ids: number[]): Promise<Channel[]>;

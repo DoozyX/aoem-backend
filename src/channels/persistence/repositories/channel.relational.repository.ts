@@ -7,7 +7,7 @@ import {
   ChannelEntity,
   ChannelMapper,
   ChannelRepository,
-  ChannelType,
+  BuffType,
 } from '@app/channels';
 
 @Injectable()
@@ -42,7 +42,7 @@ export class ChannelRelationalRepository implements ChannelRepository {
   }
 
   async findByTypeAndGuild(
-    type: ChannelType,
+    type: BuffType,
     guildId: number,
   ): Promise<Channel | null> {
     const channelEntity = await this.repository.findOne({
