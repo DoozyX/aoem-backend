@@ -16,7 +16,6 @@ export class FilterUserDto {
     'roles'?: Array<FilterUserDtoRolesEnum>;
     'statuses'?: Array<FilterUserDtoStatusesEnum>;
     'email'?: string;
-    'types'?: Array<FilterUserDtoTypesEnum>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,12 +36,6 @@ export class FilterUserDto {
             "name": "email",
             "baseName": "email",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "types",
-            "baseName": "types",
-            "type": "Array<FilterUserDtoTypesEnum>",
             "format": ""
         }    ];
 
@@ -70,9 +63,5 @@ export enum FilterUserDtoStatusesEnum {
     Approved = 'approved',
     Rejected = 'rejected',
     Expired = 'expired'
-}
-export enum FilterUserDtoTypesEnum {
-    Individual = 'individual',
-    Company = 'company'
 }
 

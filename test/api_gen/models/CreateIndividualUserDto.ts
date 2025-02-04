@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { CreateIndividualProfileDto } from '../models/CreateIndividualProfileDto';
 import { HttpFile } from '../http/http';
 
 export class CreateIndividualUserDto {
@@ -18,7 +17,6 @@ export class CreateIndividualUserDto {
     'password': string;
     'role': CreateIndividualUserDtoRoleEnum;
     'status': CreateIndividualUserDtoStatusEnum;
-    'individual'?: CreateIndividualProfileDto;
     'language': CreateIndividualUserDtoLanguageEnum;
 
     static readonly discriminator: string | undefined = undefined;
@@ -46,12 +44,6 @@ export class CreateIndividualUserDto {
             "name": "status",
             "baseName": "status",
             "type": "CreateIndividualUserDtoStatusEnum",
-            "format": ""
-        },
-        {
-            "name": "individual",
-            "baseName": "individual",
-            "type": "CreateIndividualProfileDto",
             "format": ""
         },
         {

@@ -17,7 +17,6 @@ export class CreateUserDto {
     'password': string;
     'role': CreateUserDtoRoleEnum;
     'status': CreateUserDtoStatusEnum;
-    'type': CreateUserDtoTypeEnum;
     'language': CreateUserDtoLanguageEnum;
 
     static readonly discriminator: string | undefined = undefined;
@@ -45,12 +44,6 @@ export class CreateUserDto {
             "name": "status",
             "baseName": "status",
             "type": "CreateUserDtoStatusEnum",
-            "format": ""
-        },
-        {
-            "name": "type",
-            "baseName": "type",
-            "type": "CreateUserDtoTypeEnum",
             "format": ""
         },
         {
@@ -84,10 +77,6 @@ export enum CreateUserDtoStatusEnum {
     Approved = 'approved',
     Rejected = 'rejected',
     Expired = 'expired'
-}
-export enum CreateUserDtoTypeEnum {
-    Individual = 'individual',
-    Company = 'company'
 }
 export enum CreateUserDtoLanguageEnum {
     En = 'en',

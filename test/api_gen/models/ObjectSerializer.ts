@@ -1,128 +1,54 @@
 export * from '../models/ActivateUserDto';
-export * from '../models/Activity';
-export * from '../models/Address';
-export * from '../models/AddressDto';
-export * from '../models/Application';
-export * from '../models/ApplicationStatistics';
-export * from '../models/ApplicationsControllerMy200Response';
-export * from '../models/AssignApplicationDto';
 export * from '../models/AuthConfirmEmailDto';
 export * from '../models/AuthEmailLoginDto';
 export * from '../models/AuthForgotPasswordDto';
 export * from '../models/AuthRegisterLoginDto';
 export * from '../models/AuthResetPasswordDto';
 export * from '../models/AuthUpdateDto';
-export * from '../models/ChangeStatusApplicationDto';
-export * from '../models/Company';
-export * from '../models/Country';
-export * from '../models/CreateApplicationDto';
-export * from '../models/CreateCompanyProfileDto';
-export * from '../models/CreateIndividualProfileDto';
 export * from '../models/CreateIndividualUserDto';
 export * from '../models/CreateUserDto';
-export * from '../models/Document';
-export * from '../models/DocumentDto';
 export * from '../models/ErrorResponse';
 export * from '../models/FileType';
-export * from '../models/FilterApplicationDto';
 export * from '../models/FilterUserDto';
+export * from '../models/Guild';
 export * from '../models/HealthControllerCheck200Response';
 export * from '../models/HealthControllerCheck200ResponseInfoValue';
 export * from '../models/HealthControllerCheck503Response';
-export * from '../models/Individual';
-export * from '../models/JobResponse';
 export * from '../models/LoginResponseType';
-export * from '../models/Mass';
-export * from '../models/MassDto';
 export * from '../models/PageDto';
 export * from '../models/PageMetaDto';
-export * from '../models/PermitsControllerPermitStatus200Response';
-export * from '../models/QueryApplicationDto';
 export * from '../models/QueryUserDto';
 export * from '../models/RefreshResponseType';
-export * from '../models/ReviewApplicationDto';
-export * from '../models/SortApplicationDto';
 export * from '../models/SortUserDto';
-export * from '../models/Specimen';
-export * from '../models/SpecimenAdminDto';
-export * from '../models/SpecimenApplicantDto';
-export * from '../models/SpecimenApplicantDtoNetMass';
-export * from '../models/SpecimenCountryData';
-export * from '../models/SpecimenCountryDataAdminDto';
-export * from '../models/SpecimenCountryDataApplicantDto';
-export * from '../models/SpecimenCountryDataCountry';
-export * from '../models/SpecimenDescription';
-export * from '../models/SpecimenDescriptionDto';
-export * from '../models/SpecimenNetMass';
-export * from '../models/UpdateApplicationDto';
-export * from '../models/UpdateCompanyProfileDto';
-export * from '../models/UpdateIndividualProfileDto';
 export * from '../models/UpdateUserDto';
 export * from '../models/User';
 export * from '../models/UserStatistics';
 export * from '../models/UsersControllerFindAll200Response';
 
 import { ActivateUserDto, ActivateUserDtoStatusEnum    } from '../models/ActivateUserDto';
-import { Activity , ActivityTypeEnum      , ActivityTargetEnum     } from '../models/Activity';
-import { Address } from '../models/Address';
-import { AddressDto } from '../models/AddressDto';
-import { Application        , ApplicationTypeEnum                           , ApplicationStatusEnum            } from '../models/Application';
-import { ApplicationStatistics } from '../models/ApplicationStatistics';
-import { ApplicationsControllerMy200Response } from '../models/ApplicationsControllerMy200Response';
-import { AssignApplicationDto } from '../models/AssignApplicationDto';
 import { AuthConfirmEmailDto } from '../models/AuthConfirmEmailDto';
 import { AuthEmailLoginDto } from '../models/AuthEmailLoginDto';
 import { AuthForgotPasswordDto } from '../models/AuthForgotPasswordDto';
-import { AuthRegisterLoginDto  , AuthRegisterLoginDtoTypeEnum  , AuthRegisterLoginDtoLanguageEnum   } from '../models/AuthRegisterLoginDto';
+import { AuthRegisterLoginDto  , AuthRegisterLoginDtoLanguageEnum   } from '../models/AuthRegisterLoginDto';
 import { AuthResetPasswordDto } from '../models/AuthResetPasswordDto';
 import { AuthUpdateDto } from '../models/AuthUpdateDto';
-import { ChangeStatusApplicationDto, ChangeStatusApplicationDtoStatusEnum    } from '../models/ChangeStatusApplicationDto';
-import { Company } from '../models/Company';
-import { Country } from '../models/Country';
-import { CreateApplicationDto, CreateApplicationDtoTypeEnum               , CreateApplicationDtoStatusEnum   } from '../models/CreateApplicationDto';
-import { CreateCompanyProfileDto } from '../models/CreateCompanyProfileDto';
-import { CreateIndividualProfileDto } from '../models/CreateIndividualProfileDto';
-import { CreateIndividualUserDto  , CreateIndividualUserDtoRoleEnum  , CreateIndividualUserDtoStatusEnum   , CreateIndividualUserDtoLanguageEnum   } from '../models/CreateIndividualUserDto';
-import { CreateUserDto  , CreateUserDtoRoleEnum  , CreateUserDtoStatusEnum  , CreateUserDtoTypeEnum  , CreateUserDtoLanguageEnum   } from '../models/CreateUserDto';
-import { Document  , DocumentTypeEnum   } from '../models/Document';
-import { DocumentDto , DocumentDtoTypeEnum    } from '../models/DocumentDto';
+import { CreateIndividualUserDto  , CreateIndividualUserDtoRoleEnum  , CreateIndividualUserDtoStatusEnum  , CreateIndividualUserDtoLanguageEnum   } from '../models/CreateIndividualUserDto';
+import { CreateUserDto  , CreateUserDtoRoleEnum  , CreateUserDtoStatusEnum  , CreateUserDtoLanguageEnum   } from '../models/CreateUserDto';
 import { ErrorResponse } from '../models/ErrorResponse';
 import { FileType } from '../models/FileType';
-import { FilterApplicationDto         , FilterApplicationDtoTypesEnum  , FilterApplicationDtoStatusesEnum    } from '../models/FilterApplicationDto';
-import { FilterUserDto, FilterUserDtoRolesEnum  , FilterUserDtoStatusesEnum   , FilterUserDtoTypesEnum   } from '../models/FilterUserDto';
+import { FilterUserDto, FilterUserDtoRolesEnum  , FilterUserDtoStatusesEnum    } from '../models/FilterUserDto';
+import { Guild } from '../models/Guild';
 import { HealthControllerCheck200Response } from '../models/HealthControllerCheck200Response';
 import { HealthControllerCheck200ResponseInfoValue } from '../models/HealthControllerCheck200ResponseInfoValue';
 import { HealthControllerCheck503Response } from '../models/HealthControllerCheck503Response';
-import { Individual } from '../models/Individual';
-import { JobResponse     , JobResponseStateEnum   } from '../models/JobResponse';
 import { LoginResponseType } from '../models/LoginResponseType';
-import { Mass , MassUnitEnum   } from '../models/Mass';
-import { MassDto , MassDtoUnitEnum   } from '../models/MassDto';
 import { PageDto } from '../models/PageDto';
 import { PageMetaDto } from '../models/PageMetaDto';
-import { PermitsControllerPermitStatus200Response     , PermitsControllerPermitStatus200ResponseStateEnum   } from '../models/PermitsControllerPermitStatus200Response';
-import { QueryApplicationDto } from '../models/QueryApplicationDto';
 import { QueryUserDto } from '../models/QueryUserDto';
 import { RefreshResponseType } from '../models/RefreshResponseType';
-import { ReviewApplicationDto, ReviewApplicationDtoTypeEnum               , ReviewApplicationDtoStatusEnum         } from '../models/ReviewApplicationDto';
-import { SortApplicationDto, SortApplicationDtoOrderByEnum  , SortApplicationDtoOrderEnum   } from '../models/SortApplicationDto';
 import { SortUserDto, SortUserDtoOrderByEnum  , SortUserDtoOrderEnum   } from '../models/SortUserDto';
-import { Specimen   , SpecimenCitesAppendixEnum  , SpecimenSpeciesListEnum  , SpecimenSourceEnum  , SpecimenPurposeEnum     } from '../models/Specimen';
-import { SpecimenAdminDto   , SpecimenAdminDtoCitesAppendixEnum  , SpecimenAdminDtoSpeciesListEnum  , SpecimenAdminDtoSourceEnum  , SpecimenAdminDtoPurposeEnum     } from '../models/SpecimenAdminDto';
-import { SpecimenApplicantDto   , SpecimenApplicantDtoCitesAppendixEnum  , SpecimenApplicantDtoSpeciesListEnum  , SpecimenApplicantDtoSourceEnum  , SpecimenApplicantDtoPurposeEnum    } from '../models/SpecimenApplicantDto';
-import { SpecimenApplicantDtoNetMass , SpecimenApplicantDtoNetMassUnitEnum   } from '../models/SpecimenApplicantDtoNetMass';
-import { SpecimenCountryData } from '../models/SpecimenCountryData';
-import { SpecimenCountryDataAdminDto } from '../models/SpecimenCountryDataAdminDto';
-import { SpecimenCountryDataApplicantDto } from '../models/SpecimenCountryDataApplicantDto';
-import { SpecimenCountryDataCountry } from '../models/SpecimenCountryDataCountry';
-import { SpecimenDescription , SpecimenDescriptionTradeTermCodeEnum   , SpecimenDescriptionGenderEnum   } from '../models/SpecimenDescription';
-import { SpecimenDescriptionDto , SpecimenDescriptionDtoTradeTermCodeEnum   , SpecimenDescriptionDtoGenderEnum   } from '../models/SpecimenDescriptionDto';
-import { SpecimenNetMass , SpecimenNetMassUnitEnum   } from '../models/SpecimenNetMass';
-import { UpdateApplicationDto, UpdateApplicationDtoTypeEnum               , UpdateApplicationDtoStatusEnum   } from '../models/UpdateApplicationDto';
-import { UpdateCompanyProfileDto } from '../models/UpdateCompanyProfileDto';
-import { UpdateIndividualProfileDto } from '../models/UpdateIndividualProfileDto';
-import { UpdateUserDto  , UpdateUserDtoRoleEnum  , UpdateUserDtoStatusEnum   , UpdateUserDtoLanguageEnum    } from '../models/UpdateUserDto';
-import { User     , UserRoleEnum  , UserStatusEnum   , UserTypeEnum    , UserLanguageEnum   } from '../models/User';
+import { UpdateUserDto  , UpdateUserDtoRoleEnum  , UpdateUserDtoStatusEnum  , UpdateUserDtoLanguageEnum    } from '../models/UpdateUserDto';
+import { User     , UserRoleEnum  , UserStatusEnum   , UserLanguageEnum   } from '../models/User';
 import { UserStatistics } from '../models/UserStatistics';
 import { UsersControllerFindAll200Response } from '../models/UsersControllerFindAll200Response';
 
@@ -140,128 +66,48 @@ let primitives = [
 
 let enumsMap: Set<string> = new Set<string>([
     "ActivateUserDtoStatusEnum",
-    "ActivityTypeEnum",
-    "ActivityTargetEnum",
-    "ApplicationTypeEnum",
-    "ApplicationStatusEnum",
-    "AuthRegisterLoginDtoTypeEnum",
     "AuthRegisterLoginDtoLanguageEnum",
-    "ChangeStatusApplicationDtoStatusEnum",
-    "CreateApplicationDtoTypeEnum",
-    "CreateApplicationDtoStatusEnum",
     "CreateIndividualUserDtoRoleEnum",
     "CreateIndividualUserDtoStatusEnum",
     "CreateIndividualUserDtoLanguageEnum",
     "CreateUserDtoRoleEnum",
     "CreateUserDtoStatusEnum",
-    "CreateUserDtoTypeEnum",
     "CreateUserDtoLanguageEnum",
-    "DocumentTypeEnum",
-    "DocumentDtoTypeEnum",
-    "FilterApplicationDtoTypesEnum",
-    "FilterApplicationDtoStatusesEnum",
     "FilterUserDtoRolesEnum",
     "FilterUserDtoStatusesEnum",
-    "FilterUserDtoTypesEnum",
-    "JobResponseStateEnum",
-    "MassUnitEnum",
-    "MassDtoUnitEnum",
-    "PermitsControllerPermitStatus200ResponseStateEnum",
-    "ReviewApplicationDtoTypeEnum",
-    "ReviewApplicationDtoStatusEnum",
-    "SortApplicationDtoOrderByEnum",
-    "SortApplicationDtoOrderEnum",
     "SortUserDtoOrderByEnum",
     "SortUserDtoOrderEnum",
-    "SpecimenCitesAppendixEnum",
-    "SpecimenSpeciesListEnum",
-    "SpecimenSourceEnum",
-    "SpecimenPurposeEnum",
-    "SpecimenAdminDtoCitesAppendixEnum",
-    "SpecimenAdminDtoSpeciesListEnum",
-    "SpecimenAdminDtoSourceEnum",
-    "SpecimenAdminDtoPurposeEnum",
-    "SpecimenApplicantDtoCitesAppendixEnum",
-    "SpecimenApplicantDtoSpeciesListEnum",
-    "SpecimenApplicantDtoSourceEnum",
-    "SpecimenApplicantDtoPurposeEnum",
-    "SpecimenApplicantDtoNetMassUnitEnum",
-    "SpecimenDescriptionTradeTermCodeEnum",
-    "SpecimenDescriptionGenderEnum",
-    "SpecimenDescriptionDtoTradeTermCodeEnum",
-    "SpecimenDescriptionDtoGenderEnum",
-    "SpecimenNetMassUnitEnum",
-    "UpdateApplicationDtoTypeEnum",
-    "UpdateApplicationDtoStatusEnum",
     "UpdateUserDtoRoleEnum",
     "UpdateUserDtoStatusEnum",
     "UpdateUserDtoLanguageEnum",
     "UserRoleEnum",
     "UserStatusEnum",
-    "UserTypeEnum",
     "UserLanguageEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {
     "ActivateUserDto": ActivateUserDto,
-    "Activity": Activity,
-    "Address": Address,
-    "AddressDto": AddressDto,
-    "Application": Application,
-    "ApplicationStatistics": ApplicationStatistics,
-    "ApplicationsControllerMy200Response": ApplicationsControllerMy200Response,
-    "AssignApplicationDto": AssignApplicationDto,
     "AuthConfirmEmailDto": AuthConfirmEmailDto,
     "AuthEmailLoginDto": AuthEmailLoginDto,
     "AuthForgotPasswordDto": AuthForgotPasswordDto,
     "AuthRegisterLoginDto": AuthRegisterLoginDto,
     "AuthResetPasswordDto": AuthResetPasswordDto,
     "AuthUpdateDto": AuthUpdateDto,
-    "ChangeStatusApplicationDto": ChangeStatusApplicationDto,
-    "Company": Company,
-    "Country": Country,
-    "CreateApplicationDto": CreateApplicationDto,
-    "CreateCompanyProfileDto": CreateCompanyProfileDto,
-    "CreateIndividualProfileDto": CreateIndividualProfileDto,
     "CreateIndividualUserDto": CreateIndividualUserDto,
     "CreateUserDto": CreateUserDto,
-    "Document": Document,
-    "DocumentDto": DocumentDto,
     "ErrorResponse": ErrorResponse,
     "FileType": FileType,
-    "FilterApplicationDto": FilterApplicationDto,
     "FilterUserDto": FilterUserDto,
+    "Guild": Guild,
     "HealthControllerCheck200Response": HealthControllerCheck200Response,
     "HealthControllerCheck200ResponseInfoValue": HealthControllerCheck200ResponseInfoValue,
     "HealthControllerCheck503Response": HealthControllerCheck503Response,
-    "Individual": Individual,
-    "JobResponse": JobResponse,
     "LoginResponseType": LoginResponseType,
-    "Mass": Mass,
-    "MassDto": MassDto,
     "PageDto": PageDto,
     "PageMetaDto": PageMetaDto,
-    "PermitsControllerPermitStatus200Response": PermitsControllerPermitStatus200Response,
-    "QueryApplicationDto": QueryApplicationDto,
     "QueryUserDto": QueryUserDto,
     "RefreshResponseType": RefreshResponseType,
-    "ReviewApplicationDto": ReviewApplicationDto,
-    "SortApplicationDto": SortApplicationDto,
     "SortUserDto": SortUserDto,
-    "Specimen": Specimen,
-    "SpecimenAdminDto": SpecimenAdminDto,
-    "SpecimenApplicantDto": SpecimenApplicantDto,
-    "SpecimenApplicantDtoNetMass": SpecimenApplicantDtoNetMass,
-    "SpecimenCountryData": SpecimenCountryData,
-    "SpecimenCountryDataAdminDto": SpecimenCountryDataAdminDto,
-    "SpecimenCountryDataApplicantDto": SpecimenCountryDataApplicantDto,
-    "SpecimenCountryDataCountry": SpecimenCountryDataCountry,
-    "SpecimenDescription": SpecimenDescription,
-    "SpecimenDescriptionDto": SpecimenDescriptionDto,
-    "SpecimenNetMass": SpecimenNetMass,
-    "UpdateApplicationDto": UpdateApplicationDto,
-    "UpdateCompanyProfileDto": UpdateCompanyProfileDto,
-    "UpdateIndividualProfileDto": UpdateIndividualProfileDto,
     "UpdateUserDto": UpdateUserDto,
     "User": User,
     "UserStatistics": UserStatistics,

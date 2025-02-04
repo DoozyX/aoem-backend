@@ -1,6 +1,6 @@
 # .HealthApi
 
-All URIs are relative to *https://moepp-cites.doozyx.com*
+All URIs are relative to *https://aoem-api.doozyx.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

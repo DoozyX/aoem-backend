@@ -1,6 +1,6 @@
 # .UsersApi
 
-All URIs are relative to *https://moepp-cites.doozyx.com*
+All URIs are relative to *https://aoem-api.doozyx.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -94,7 +94,6 @@ let body:.UsersApiUsersControllerCreateRequest = {
     password: "password_example",
     role: "user",
     status: "inactive",
-    type: "individual",
     language: "en",
   },
 };
@@ -155,23 +154,6 @@ let body:.UsersApiUsersControllerCreateIndividualRequest = {
     password: "password_example",
     role: "user",
     status: "inactive",
-    individual: {
-      firstName: "firstName_example",
-      lastName: "lastName_example",
-      address: {
-        street: "street_example",
-        city: "city_example",
-        state: "state_example",
-        countryId: 3.14,
-        postalCode: "postalCode_example",
-      },
-      document: {
-        id: "id_example",
-        type: "personalId",
-        issuingCountryId: 807,
-      },
-      phoneNumber: "phoneNumber_example",
-    },
     language: "en",
   },
 };
@@ -238,9 +220,6 @@ let body:.UsersApiUsersControllerFindAllRequest = {
         "inactive",
       ],
       email: "email_example",
-      types: [
-        "individual",
-      ],
     },
     sort: [
       {
@@ -408,23 +387,6 @@ let body:.UsersApiUsersControllerUpdateRequest = {
     password: "password_example",
     role: "user",
     status: "inactive",
-    individual: {
-      firstName: "firstName_example",
-      lastName: "lastName_example",
-      address: {
-        street: "street_example",
-        city: "city_example",
-        state: "state_example",
-        countryId: 3.14,
-        postalCode: "postalCode_example",
-      },
-      document: {
-        id: "id_example",
-        type: "personalId",
-        issuingCountryId: 807,
-      },
-      phoneNumber: "phoneNumber_example",
-    },
     language: "en",
     statusReason: "statusReason_example",
   },

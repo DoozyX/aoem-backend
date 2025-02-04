@@ -15,7 +15,6 @@ import { HttpFile } from '../http/http';
 export class AuthRegisterLoginDto {
     'email': string;
     'password': string;
-    'type': AuthRegisterLoginDtoTypeEnum;
     'language': AuthRegisterLoginDtoLanguageEnum;
 
     static readonly discriminator: string | undefined = undefined;
@@ -34,12 +33,6 @@ export class AuthRegisterLoginDto {
             "format": ""
         },
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "AuthRegisterLoginDtoTypeEnum",
-            "format": ""
-        },
-        {
             "name": "language",
             "baseName": "language",
             "type": "AuthRegisterLoginDtoLanguageEnum",
@@ -55,10 +48,6 @@ export class AuthRegisterLoginDto {
 }
 
 
-export enum AuthRegisterLoginDtoTypeEnum {
-    Individual = 'individual',
-    Company = 'company'
-}
 export enum AuthRegisterLoginDtoLanguageEnum {
     En = 'en',
     Mk = 'mk'

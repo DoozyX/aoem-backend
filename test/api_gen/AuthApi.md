@@ -1,6 +1,6 @@
 # .AuthApi
 
-All URIs are relative to *https://moepp-cites.doozyx.com*
+All URIs are relative to *https://aoem-api.doozyx.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -348,7 +348,6 @@ let body:.AuthApiAuthControllerRegisterRequest = {
   authRegisterLoginDto: {
     email: "user@doozyx.com",
     password: "password_example",
-    type: "individual",
     language: "en",
   },
 };

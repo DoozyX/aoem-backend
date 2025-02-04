@@ -1,15 +1,9 @@
 import { HttpStatus } from '@nestjs/common';
 import {
   AuthRegisterLoginDtoLanguageEnum,
-  AuthRegisterLoginDtoTypeEnum,
-  CreateIndividualUserDtoLanguageEnum,
-  CreateIndividualUserDtoRoleEnum,
-  CreateIndividualUserDtoStatusEnum,
   CreateUserDtoLanguageEnum,
   CreateUserDtoRoleEnum,
   CreateUserDtoStatusEnum,
-  CreateUserDtoTypeEnum,
-  DocumentDtoTypeEnum,
   User,
   UserStatusEnum,
 } from '@test/api_gen';
@@ -33,7 +27,6 @@ describe('Users Module', () => {
       await superApi.auth.authControllerRegister({
         email: newUserEmail,
         password: newUserPassword,
-        type: AuthRegisterLoginDtoTypeEnum.Individual,
         language: AuthRegisterLoginDtoLanguageEnum.En,
       });
 
@@ -89,49 +82,6 @@ describe('Users Module', () => {
         }
       });
 
-      it('should successfully create new individual user', async () => {
-        const newUserByAdminEmail = `user-created-by-admin.${Date.now()}@doozyx.com`;
-        const newUserByAdminPassword = `secretPassword123$`;
-
-        const res = await superApi.users.usersControllerCreateIndividual({
-          email: newUserByAdminEmail,
-          password: newUserByAdminPassword,
-          role: CreateIndividualUserDtoRoleEnum.User,
-          status: CreateIndividualUserDtoStatusEnum.Verified,
-          language: CreateIndividualUserDtoLanguageEnum.En,
-          individual: {
-            firstName: 'First',
-            lastName: 'Last',
-            phoneNumber: '1234567890',
-            document: {
-              id: '1234567890',
-              type: DocumentDtoTypeEnum.Passport,
-              issuingCountryId: 807,
-            },
-            address: {
-              countryId: 807,
-              city: 'City',
-              street: 'Street',
-              state: 'State',
-              postalCode: '123456',
-            },
-          },
-        });
-
-        expect(res.status).toBe(UserStatusEnum.Verified);
-        expect(res.email).toBe(newUserByAdminEmail);
-        expect(res.individual).toBeDefined();
-        expect(res.individual?.firstName).toBe('First');
-
-        const api = new Api();
-        const loginRes = await api.auth.authControllerLogin({
-          email: newUserByAdminEmail,
-          password: newUserByAdminPassword,
-        });
-
-        expect(loginRes.token).toBeDefined();
-      });
-
       it('should successfully create new user', async () => {
         const newUserByAdminEmail = `user-created-by-admin.${Date.now()}@doozyx.com`;
         const newUserByAdminPassword = `secretPassword123$`;
@@ -140,7 +90,6 @@ describe('Users Module', () => {
           const res = await superApi.users.usersControllerCreate({
             email: newUserByAdminEmail,
             password: newUserByAdminPassword,
-            type: CreateUserDtoTypeEnum.Individual,
             status: CreateUserDtoStatusEnum.Verified,
             role: CreateUserDtoRoleEnum.User,
             language: CreateUserDtoLanguageEnum.En,
@@ -148,7 +97,6 @@ describe('Users Module', () => {
 
           expect(res.status).toBe(UserStatusEnum.Verified);
           expect(res.email).toBe(newUserByAdminEmail);
-          expect(res.individual).toBeNull();
         } catch (e) {
           const error = getApiError(e);
           console.log(error.message);

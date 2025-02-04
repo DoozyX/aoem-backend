@@ -2,274 +2,31 @@ import { ResponseContext, RequestContext, HttpFile, HttpInfo } from '../http/htt
 import { Configuration} from '../configuration'
 
 import { ActivateUserDto } from '../models/ActivateUserDto';
-import { Activity } from '../models/Activity';
-import { Address } from '../models/Address';
-import { AddressDto } from '../models/AddressDto';
-import { Application } from '../models/Application';
-import { ApplicationStatistics } from '../models/ApplicationStatistics';
-import { ApplicationsControllerMy200Response } from '../models/ApplicationsControllerMy200Response';
-import { AssignApplicationDto } from '../models/AssignApplicationDto';
 import { AuthConfirmEmailDto } from '../models/AuthConfirmEmailDto';
 import { AuthEmailLoginDto } from '../models/AuthEmailLoginDto';
 import { AuthForgotPasswordDto } from '../models/AuthForgotPasswordDto';
 import { AuthRegisterLoginDto } from '../models/AuthRegisterLoginDto';
 import { AuthResetPasswordDto } from '../models/AuthResetPasswordDto';
 import { AuthUpdateDto } from '../models/AuthUpdateDto';
-import { ChangeStatusApplicationDto } from '../models/ChangeStatusApplicationDto';
-import { Company } from '../models/Company';
-import { Country } from '../models/Country';
-import { CreateApplicationDto } from '../models/CreateApplicationDto';
-import { CreateCompanyProfileDto } from '../models/CreateCompanyProfileDto';
-import { CreateIndividualProfileDto } from '../models/CreateIndividualProfileDto';
 import { CreateIndividualUserDto } from '../models/CreateIndividualUserDto';
 import { CreateUserDto } from '../models/CreateUserDto';
-import { Document } from '../models/Document';
-import { DocumentDto } from '../models/DocumentDto';
 import { ErrorResponse } from '../models/ErrorResponse';
 import { FileType } from '../models/FileType';
-import { FilterApplicationDto } from '../models/FilterApplicationDto';
 import { FilterUserDto } from '../models/FilterUserDto';
+import { Guild } from '../models/Guild';
 import { HealthControllerCheck200Response } from '../models/HealthControllerCheck200Response';
 import { HealthControllerCheck200ResponseInfoValue } from '../models/HealthControllerCheck200ResponseInfoValue';
 import { HealthControllerCheck503Response } from '../models/HealthControllerCheck503Response';
-import { Individual } from '../models/Individual';
-import { JobResponse } from '../models/JobResponse';
 import { LoginResponseType } from '../models/LoginResponseType';
-import { Mass } from '../models/Mass';
-import { MassDto } from '../models/MassDto';
 import { PageDto } from '../models/PageDto';
 import { PageMetaDto } from '../models/PageMetaDto';
-import { PermitsControllerPermitStatus200Response } from '../models/PermitsControllerPermitStatus200Response';
-import { QueryApplicationDto } from '../models/QueryApplicationDto';
 import { QueryUserDto } from '../models/QueryUserDto';
 import { RefreshResponseType } from '../models/RefreshResponseType';
-import { ReviewApplicationDto } from '../models/ReviewApplicationDto';
-import { SortApplicationDto } from '../models/SortApplicationDto';
 import { SortUserDto } from '../models/SortUserDto';
-import { Specimen } from '../models/Specimen';
-import { SpecimenAdminDto } from '../models/SpecimenAdminDto';
-import { SpecimenApplicantDto } from '../models/SpecimenApplicantDto';
-import { SpecimenApplicantDtoNetMass } from '../models/SpecimenApplicantDtoNetMass';
-import { SpecimenCountryData } from '../models/SpecimenCountryData';
-import { SpecimenCountryDataAdminDto } from '../models/SpecimenCountryDataAdminDto';
-import { SpecimenCountryDataApplicantDto } from '../models/SpecimenCountryDataApplicantDto';
-import { SpecimenCountryDataCountry } from '../models/SpecimenCountryDataCountry';
-import { SpecimenDescription } from '../models/SpecimenDescription';
-import { SpecimenDescriptionDto } from '../models/SpecimenDescriptionDto';
-import { SpecimenNetMass } from '../models/SpecimenNetMass';
-import { UpdateApplicationDto } from '../models/UpdateApplicationDto';
-import { UpdateCompanyProfileDto } from '../models/UpdateCompanyProfileDto';
-import { UpdateIndividualProfileDto } from '../models/UpdateIndividualProfileDto';
 import { UpdateUserDto } from '../models/UpdateUserDto';
 import { User } from '../models/User';
 import { UserStatistics } from '../models/UserStatistics';
 import { UsersControllerFindAll200Response } from '../models/UsersControllerFindAll200Response';
-import { ObservableActivityApi } from './ObservableAPI';
-
-import { ActivityApiRequestFactory, ActivityApiResponseProcessor} from "../apis/ActivityApi";
-export class PromiseActivityApi {
-    private api: ObservableActivityApi
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: ActivityApiRequestFactory,
-        responseProcessor?: ActivityApiResponseProcessor
-    ) {
-        this.api = new ObservableActivityApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * @param type 
-     * @param id 
-     */
-    public activityControllerFindAllWithHttpInfo(type: string, id: number, _options?: Configuration): Promise<HttpInfo<Array<Activity>>> {
-        const result = this.api.activityControllerFindAllWithHttpInfo(type, id, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param type 
-     * @param id 
-     */
-    public activityControllerFindAll(type: string, id: number, _options?: Configuration): Promise<Array<Activity>> {
-        const result = this.api.activityControllerFindAll(type, id, _options);
-        return result.toPromise();
-    }
-
-
-}
-
-
-
-import { ObservableApplicationsApi } from './ObservableAPI';
-
-import { ApplicationsApiRequestFactory, ApplicationsApiResponseProcessor} from "../apis/ApplicationsApi";
-export class PromiseApplicationsApi {
-    private api: ObservableApplicationsApi
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: ApplicationsApiRequestFactory,
-        responseProcessor?: ApplicationsApiResponseProcessor
-    ) {
-        this.api = new ObservableApplicationsApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * @param id 
-     * @param assignApplicationDto 
-     */
-    public applicationsControllerAssignWithHttpInfo(id: number, assignApplicationDto: AssignApplicationDto, _options?: Configuration): Promise<HttpInfo<Application>> {
-        const result = this.api.applicationsControllerAssignWithHttpInfo(id, assignApplicationDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param id 
-     * @param assignApplicationDto 
-     */
-    public applicationsControllerAssign(id: number, assignApplicationDto: AssignApplicationDto, _options?: Configuration): Promise<Application> {
-        const result = this.api.applicationsControllerAssign(id, assignApplicationDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param id 
-     * @param changeStatusApplicationDto 
-     */
-    public applicationsControllerChangeStatusWithHttpInfo(id: number, changeStatusApplicationDto: ChangeStatusApplicationDto, _options?: Configuration): Promise<HttpInfo<Application>> {
-        const result = this.api.applicationsControllerChangeStatusWithHttpInfo(id, changeStatusApplicationDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param id 
-     * @param changeStatusApplicationDto 
-     */
-    public applicationsControllerChangeStatus(id: number, changeStatusApplicationDto: ChangeStatusApplicationDto, _options?: Configuration): Promise<Application> {
-        const result = this.api.applicationsControllerChangeStatus(id, changeStatusApplicationDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param queryApplicationDto 
-     */
-    public applicationsControllerFindAllWithHttpInfo(queryApplicationDto: QueryApplicationDto, _options?: Configuration): Promise<HttpInfo<ApplicationsControllerMy200Response>> {
-        const result = this.api.applicationsControllerFindAllWithHttpInfo(queryApplicationDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param queryApplicationDto 
-     */
-    public applicationsControllerFindAll(queryApplicationDto: QueryApplicationDto, _options?: Configuration): Promise<ApplicationsControllerMy200Response> {
-        const result = this.api.applicationsControllerFindAll(queryApplicationDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param id 
-     */
-    public applicationsControllerFindOneWithHttpInfo(id: number, _options?: Configuration): Promise<HttpInfo<Application>> {
-        const result = this.api.applicationsControllerFindOneWithHttpInfo(id, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param id 
-     */
-    public applicationsControllerFindOne(id: number, _options?: Configuration): Promise<Application> {
-        const result = this.api.applicationsControllerFindOne(id, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param queryApplicationDto 
-     */
-    public applicationsControllerMyWithHttpInfo(queryApplicationDto: QueryApplicationDto, _options?: Configuration): Promise<HttpInfo<ApplicationsControllerMy200Response>> {
-        const result = this.api.applicationsControllerMyWithHttpInfo(queryApplicationDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param queryApplicationDto 
-     */
-    public applicationsControllerMy(queryApplicationDto: QueryApplicationDto, _options?: Configuration): Promise<ApplicationsControllerMy200Response> {
-        const result = this.api.applicationsControllerMy(queryApplicationDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param id 
-     * @param reviewApplicationDto 
-     */
-    public applicationsControllerReviewWithHttpInfo(id: number, reviewApplicationDto: ReviewApplicationDto, _options?: Configuration): Promise<HttpInfo<Application>> {
-        const result = this.api.applicationsControllerReviewWithHttpInfo(id, reviewApplicationDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param id 
-     * @param reviewApplicationDto 
-     */
-    public applicationsControllerReview(id: number, reviewApplicationDto: ReviewApplicationDto, _options?: Configuration): Promise<Application> {
-        const result = this.api.applicationsControllerReview(id, reviewApplicationDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     */
-    public applicationsControllerStatisticsWithHttpInfo(_options?: Configuration): Promise<HttpInfo<ApplicationStatistics>> {
-        const result = this.api.applicationsControllerStatisticsWithHttpInfo(_options);
-        return result.toPromise();
-    }
-
-    /**
-     */
-    public applicationsControllerStatistics(_options?: Configuration): Promise<ApplicationStatistics> {
-        const result = this.api.applicationsControllerStatistics(_options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param createApplicationDto 
-     */
-    public applicationsControllerSubmitWithHttpInfo(createApplicationDto: CreateApplicationDto, _options?: Configuration): Promise<HttpInfo<Application>> {
-        const result = this.api.applicationsControllerSubmitWithHttpInfo(createApplicationDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param createApplicationDto 
-     */
-    public applicationsControllerSubmit(createApplicationDto: CreateApplicationDto, _options?: Configuration): Promise<Application> {
-        const result = this.api.applicationsControllerSubmit(createApplicationDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param id 
-     * @param updateApplicationDto 
-     */
-    public applicationsControllerUpdateWithHttpInfo(id: number, updateApplicationDto: UpdateApplicationDto, _options?: Configuration): Promise<HttpInfo<Application>> {
-        const result = this.api.applicationsControllerUpdateWithHttpInfo(id, updateApplicationDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param id 
-     * @param updateApplicationDto 
-     */
-    public applicationsControllerUpdate(id: number, updateApplicationDto: UpdateApplicationDto, _options?: Configuration): Promise<Application> {
-        const result = this.api.applicationsControllerUpdate(id, updateApplicationDto, _options);
-        return result.toPromise();
-    }
-
-
-}
-
-
-
 import { ObservableAuthApi } from './ObservableAPI';
 
 import { AuthApiRequestFactory, AuthApiResponseProcessor} from "../apis/AuthApi";
@@ -441,39 +198,6 @@ export class PromiseAuthApi {
 
 
 
-import { ObservableCountriesApi } from './ObservableAPI';
-
-import { CountriesApiRequestFactory, CountriesApiResponseProcessor} from "../apis/CountriesApi";
-export class PromiseCountriesApi {
-    private api: ObservableCountriesApi
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: CountriesApiRequestFactory,
-        responseProcessor?: CountriesApiResponseProcessor
-    ) {
-        this.api = new ObservableCountriesApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     */
-    public countriesControllerFindAllWithHttpInfo(_options?: Configuration): Promise<HttpInfo<Array<Country>>> {
-        const result = this.api.countriesControllerFindAllWithHttpInfo(_options);
-        return result.toPromise();
-    }
-
-    /**
-     */
-    public countriesControllerFindAll(_options?: Configuration): Promise<Array<Country>> {
-        const result = this.api.countriesControllerFindAll(_options);
-        return result.toPromise();
-    }
-
-
-}
-
-
-
 import { ObservableFilesApi } from './ObservableAPI';
 
 import { FilesApiRequestFactory, FilesApiResponseProcessor} from "../apis/FilesApi";
@@ -501,6 +225,39 @@ export class PromiseFilesApi {
      */
     public filesLocalControllerUploadFile(file?: HttpFile, _options?: Configuration): Promise<FileType> {
         const result = this.api.filesLocalControllerUploadFile(file, _options);
+        return result.toPromise();
+    }
+
+
+}
+
+
+
+import { ObservableGuildsApi } from './ObservableAPI';
+
+import { GuildsApiRequestFactory, GuildsApiResponseProcessor} from "../apis/GuildsApi";
+export class PromiseGuildsApi {
+    private api: ObservableGuildsApi
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: GuildsApiRequestFactory,
+        responseProcessor?: GuildsApiResponseProcessor
+    ) {
+        this.api = new ObservableGuildsApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     */
+    public guildsControllerFindAllWithHttpInfo(_options?: Configuration): Promise<HttpInfo<Array<Guild>>> {
+        const result = this.api.guildsControllerFindAllWithHttpInfo(_options);
+        return result.toPromise();
+    }
+
+    /**
+     */
+    public guildsControllerFindAll(_options?: Configuration): Promise<Array<Guild>> {
+        const result = this.api.guildsControllerFindAll(_options);
         return result.toPromise();
     }
 
@@ -567,177 +324,6 @@ export class PromiseHomeApi {
      */
     public homeControllerAppInfo(_options?: Configuration): Promise<void> {
         const result = this.api.homeControllerAppInfo(_options);
-        return result.toPromise();
-    }
-
-
-}
-
-
-
-import { ObservablePermitsApi } from './ObservableAPI';
-
-import { PermitsApiRequestFactory, PermitsApiResponseProcessor} from "../apis/PermitsApi";
-export class PromisePermitsApi {
-    private api: ObservablePermitsApi
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: PermitsApiRequestFactory,
-        responseProcessor?: PermitsApiResponseProcessor
-    ) {
-        this.api = new ObservablePermitsApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * @param id 
-     */
-    public permitsControllerPermitWithHttpInfo(id: number, _options?: Configuration): Promise<HttpInfo<FileType>> {
-        const result = this.api.permitsControllerPermitWithHttpInfo(id, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param id 
-     */
-    public permitsControllerPermit(id: number, _options?: Configuration): Promise<FileType> {
-        const result = this.api.permitsControllerPermit(id, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param id 
-     */
-    public permitsControllerPermitStatusWithHttpInfo(id: number, _options?: Configuration): Promise<HttpInfo<PermitsControllerPermitStatus200Response>> {
-        const result = this.api.permitsControllerPermitStatusWithHttpInfo(id, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param id 
-     */
-    public permitsControllerPermitStatus(id: number, _options?: Configuration): Promise<PermitsControllerPermitStatus200Response> {
-        const result = this.api.permitsControllerPermitStatus(id, _options);
-        return result.toPromise();
-    }
-
-
-}
-
-
-
-import { ObservableProfilesApi } from './ObservableAPI';
-
-import { ProfilesApiRequestFactory, ProfilesApiResponseProcessor} from "../apis/ProfilesApi";
-export class PromiseProfilesApi {
-    private api: ObservableProfilesApi
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: ProfilesApiRequestFactory,
-        responseProcessor?: ProfilesApiResponseProcessor
-    ) {
-        this.api = new ObservableProfilesApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * @param createCompanyProfileDto 
-     */
-    public profilesControllerCreateCompanyWithHttpInfo(createCompanyProfileDto: CreateCompanyProfileDto, _options?: Configuration): Promise<HttpInfo<Company>> {
-        const result = this.api.profilesControllerCreateCompanyWithHttpInfo(createCompanyProfileDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param createCompanyProfileDto 
-     */
-    public profilesControllerCreateCompany(createCompanyProfileDto: CreateCompanyProfileDto, _options?: Configuration): Promise<Company> {
-        const result = this.api.profilesControllerCreateCompany(createCompanyProfileDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param createIndividualProfileDto 
-     */
-    public profilesControllerCreateIndividualWithHttpInfo(createIndividualProfileDto: CreateIndividualProfileDto, _options?: Configuration): Promise<HttpInfo<Individual>> {
-        const result = this.api.profilesControllerCreateIndividualWithHttpInfo(createIndividualProfileDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param createIndividualProfileDto 
-     */
-    public profilesControllerCreateIndividual(createIndividualProfileDto: CreateIndividualProfileDto, _options?: Configuration): Promise<Individual> {
-        const result = this.api.profilesControllerCreateIndividual(createIndividualProfileDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param updateCompanyProfileDto 
-     */
-    public profilesControllerUpdateCompanyWithHttpInfo(updateCompanyProfileDto: UpdateCompanyProfileDto, _options?: Configuration): Promise<HttpInfo<Company>> {
-        const result = this.api.profilesControllerUpdateCompanyWithHttpInfo(updateCompanyProfileDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param updateCompanyProfileDto 
-     */
-    public profilesControllerUpdateCompany(updateCompanyProfileDto: UpdateCompanyProfileDto, _options?: Configuration): Promise<Company> {
-        const result = this.api.profilesControllerUpdateCompany(updateCompanyProfileDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param updateIndividualProfileDto 
-     */
-    public profilesControllerUpdateIndividualWithHttpInfo(updateIndividualProfileDto: UpdateIndividualProfileDto, _options?: Configuration): Promise<HttpInfo<Individual>> {
-        const result = this.api.profilesControllerUpdateIndividualWithHttpInfo(updateIndividualProfileDto, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param updateIndividualProfileDto 
-     */
-    public profilesControllerUpdateIndividual(updateIndividualProfileDto: UpdateIndividualProfileDto, _options?: Configuration): Promise<Individual> {
-        const result = this.api.profilesControllerUpdateIndividual(updateIndividualProfileDto, _options);
-        return result.toPromise();
-    }
-
-
-}
-
-
-
-import { ObservableReportsApi } from './ObservableAPI';
-
-import { ReportsApiRequestFactory, ReportsApiResponseProcessor} from "../apis/ReportsApi";
-export class PromiseReportsApi {
-    private api: ObservableReportsApi
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: ReportsApiRequestFactory,
-        responseProcessor?: ReportsApiResponseProcessor
-    ) {
-        this.api = new ObservableReportsApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * @param year 
-     * @param num 
-     */
-    public reportsControllerReportWithHttpInfo(year: number, num: string, _options?: Configuration): Promise<HttpInfo<FileType>> {
-        const result = this.api.reportsControllerReportWithHttpInfo(year, num, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * @param year 
-     * @param num 
-     */
-    public reportsControllerReport(year: number, num: string, _options?: Configuration): Promise<FileType> {
-        const result = this.api.reportsControllerReport(year, num, _options);
         return result.toPromise();
     }
 

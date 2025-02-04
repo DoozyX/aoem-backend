@@ -12,16 +12,12 @@
 
 import { HttpFile } from '../http/http';
 
-export class User {
+export class Guild {
     'createdAt': Date;
     'updatedAt': Date | null;
     'deletedAt': Date | null;
     'id': number;
-    'email': string;
-    'role': UserRoleEnum;
-    'status': UserStatusEnum;
-    'statusReason': string | null;
-    'language': UserLanguageEnum;
+    'name': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,63 +47,17 @@ export class User {
             "format": ""
         },
         {
-            "name": "email",
-            "baseName": "email",
+            "name": "name",
+            "baseName": "name",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "role",
-            "baseName": "role",
-            "type": "UserRoleEnum",
-            "format": ""
-        },
-        {
-            "name": "status",
-            "baseName": "status",
-            "type": "UserStatusEnum",
-            "format": ""
-        },
-        {
-            "name": "statusReason",
-            "baseName": "statusReason",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "language",
-            "baseName": "language",
-            "type": "UserLanguageEnum",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return User.attributeTypeMap;
+        return Guild.attributeTypeMap;
     }
 
     public constructor() {
     }
-}
-
-
-export enum UserRoleEnum {
-    User = 'user',
-    Admin = 'admin',
-    Approver = 'approver',
-    Director = 'director',
-    SuperAdmin = 'superAdmin',
-    Archiver = 'archiver'
-}
-export enum UserStatusEnum {
-    Inactive = 'inactive',
-    Verified = 'verified',
-    Pending = 'pending',
-    Approved = 'approved',
-    Rejected = 'rejected',
-    Expired = 'expired'
-}
-export enum UserLanguageEnum {
-    En = 'en',
-    Mk = 'mk'
 }
 

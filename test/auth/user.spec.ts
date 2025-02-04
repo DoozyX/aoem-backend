@@ -1,10 +1,7 @@
-import { faker } from '@faker-js/faker';
 import { HttpStatus } from '@nestjs/common';
 
 import {
   AuthRegisterLoginDtoLanguageEnum,
-  AuthRegisterLoginDtoTypeEnum,
-  DocumentDtoTypeEnum,
   UpdateUserDtoStatusEnum,
   UserStatusEnum,
 } from '@test/api_gen';
@@ -26,7 +23,6 @@ describe('Auth', () => {
     await api.auth.authControllerRegister({
       email: newUserEmail,
       password: newUserPassword,
-      type: AuthRegisterLoginDtoTypeEnum.Individual,
       language: AuthRegisterLoginDtoLanguageEnum.En,
     });
   });
@@ -37,7 +33,6 @@ describe('Auth', () => {
         const res = await api.auth.authControllerRegister({
           email: TESTER_AUTH.email,
           password: TESTER_AUTH.password,
-          type: AuthRegisterLoginDtoTypeEnum.Individual,
           language: AuthRegisterLoginDtoLanguageEnum.En,
         });
         expect(res).not.toBeDefined();
@@ -51,7 +46,6 @@ describe('Auth', () => {
       const res = await api.auth.authControllerRegisterWithHttpInfo({
         email: `new.user.${Date.now()}@doozyx.com`,
         password: 'Secret-pwd-123$',
-        type: AuthRegisterLoginDtoTypeEnum.Individual,
         language: AuthRegisterLoginDtoLanguageEnum.En,
       });
       expect(res.httpStatusCode).toBe(HttpStatus.CREATED);
@@ -243,7 +237,6 @@ describe('New user flow', () => {
     const res = await api.auth.authControllerRegisterWithHttpInfo({
       email: userCredentials.email,
       password: userCredentials.password,
-      type: AuthRegisterLoginDtoTypeEnum.Individual,
       language: AuthRegisterLoginDtoLanguageEnum.En,
     });
     expect(res.httpStatusCode).toBe(HttpStatus.CREATED);
@@ -302,27 +295,5 @@ describe('New user flow', () => {
     const api = Api.withToken(newUserToken);
     const res = await api.auth.authControllerMe();
     expect(res.email).toBe(userCredentials.email);
-  });
-
-  it('should setup profile', async () => {
-    const api = Api.withToken(newUserToken);
-    const res = await api.profiles.profilesControllerCreateIndividual({
-      firstName: faker.person.firstName(),
-      lastName: faker.person.lastName(),
-      address: {
-        countryId: 807,
-        city: faker.location.city(),
-        street: faker.location.streetAddress(),
-        state: faker.location.state(),
-        postalCode: faker.location.zipCode(),
-      },
-      document: {
-        id: faker.string.uuid(),
-        type: DocumentDtoTypeEnum.Passport,
-        issuingCountryId: 807,
-      },
-      phoneNumber: '1234567890',
-    });
-    expect(res).toBeDefined();
   });
 });

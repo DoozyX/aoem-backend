@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { CreateIndividualProfileDto } from '../models/CreateIndividualProfileDto';
 import { HttpFile } from '../http/http';
 
 export class UpdateUserDto {
@@ -18,7 +17,6 @@ export class UpdateUserDto {
     'password'?: string;
     'role'?: UpdateUserDtoRoleEnum;
     'status'?: UpdateUserDtoStatusEnum;
-    'individual'?: CreateIndividualProfileDto;
     'language'?: UpdateUserDtoLanguageEnum;
     'statusReason'?: string;
 
@@ -47,12 +45,6 @@ export class UpdateUserDto {
             "name": "status",
             "baseName": "status",
             "type": "UpdateUserDtoStatusEnum",
-            "format": ""
-        },
-        {
-            "name": "individual",
-            "baseName": "individual",
-            "type": "CreateIndividualProfileDto",
             "format": ""
         },
         {
