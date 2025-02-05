@@ -1,6 +1,6 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 
-import { Channel, ChannelRepository } from '@app/channels';
+import { BuffType, Channel, ChannelRepository } from '@app/channels';
 
 import { CreateChannelDto } from '../dto/create-channel.dto';
 import { GuildRepository } from '@app/guilds';
@@ -43,5 +43,16 @@ export class ChannelService {
 
   findAll(): Promise<Channel[]> {
     return this.channelRepository.findAll();
+  }
+
+  async findByGuildAndType(
+    guildUid: string,
+    type: BuffType,
+  ): Promise<Channel | null> {
+    const guild = await this.guildRepository.findByUid(guildUid);
+    if (!guild) {
+      throw new NotFoundException('No guild guild');
+    }
+    return this.channelRepository.findByTypeAndGuild(type, guild.id);
   }
 }
