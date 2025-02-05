@@ -45,4 +45,22 @@ export class BuffService {
 
     return this.buffRepository.findByTypeAndGuild(type, guild.id);
   }
+
+  async removeFirst(guildUid: string, type: BuffType): Promise<Buff> {
+    const guild = await this.guildRepository.findByUid(guildUid);
+    if (!guild) {
+      throw new NotFoundException('No guild guild');
+    }
+
+    const buffs = await this.buffRepository.findByTypeAndGuild(type, guild.id);
+    if (buffs.length == 0) {
+      throw new BadRequestException('no buffs found');
+    }
+
+    const buffToRemove = buffs[0];
+
+    await this.buffRepository.remove(buffToRemove.id);
+
+    return buffToRemove;
+  }
 }

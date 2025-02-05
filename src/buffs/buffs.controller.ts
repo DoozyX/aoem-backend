@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   HttpCode,
   HttpStatus,
   Param,
@@ -65,5 +66,32 @@ export class BuffsController {
     @Param('type', new ParseEnumPipe(BuffType)) type: BuffType,
   ): Promise<Buff[] | null> {
     return this.buffService.findAll(uid, type);
+  }
+
+  @Delete('/:guildUid/:type')
+  @HttpCode(HttpStatus.OK)
+  @ApiParam({
+    name: 'guildUid',
+    type: String,
+    required: true,
+  })
+  @ApiParam({
+    name: 'type',
+    type: () => BuffType,
+    enum: BuffType,
+    required: true,
+  })
+  @ApiOkResponse({
+    description: 'The removed buff.',
+    type: Buff,
+  })
+  @ApiUnprocessableEntityResponse({
+    description: 'Invalid data provided',
+  })
+  removeFirst(
+    @Param('guildUid') uid: string,
+    @Param('type', new ParseEnumPipe(BuffType)) type: BuffType,
+  ): Promise<Buff> {
+    return this.buffService.removeFirst(uid, type);
   }
 }
