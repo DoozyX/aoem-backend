@@ -37,7 +37,7 @@
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org doozyx --project moepp-cites ./dist && sentry-cli sourcemaps upload --org doozyx --project moepp-cites ./dist"
   },
   "dependencies": {
-    "@nestjs/bullmq": "^10.2.0",
+    "@nestjs/bullmq": "^11.0.2",
     "@nestjs/cache-manager": "^2.2.2",
     "@nestjs/common": "10.3.10",
     "@nestjs/config": "3.2.3",
