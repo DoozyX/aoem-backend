@@ -1,4 +1,4 @@
-import { Column, Entity, Index, ManyToOne, Unique } from 'typeorm';
+import { Column, Entity, Index, ManyToOne } from 'typeorm';
 
 import { AbstractEntity } from '@app/utils';
 import { Buff } from '@app/buffs';
